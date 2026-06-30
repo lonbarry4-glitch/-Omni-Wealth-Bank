@@ -2325,7 +2325,7 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
   accountNum: "OWB-8743159028",
   displayNum: "Core Checking (...59028)",
   balance: "$634,746.26",
-  avatar: null,
+  avatar: "AAB",
   ledger: [
      { date: "2023-03-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8472619035/39184/CREDIT", amount: "+$720.00", status: "SUCCESSFUL" },
 
@@ -2548,8 +2548,11 @@ const headerAvatar = document.getElementById("header-avatar");
 const navText = document.getElementById("nav-avatar-text");
 const headerText = document.getElementById("header-avatar-text");
 
-if (activeUserSession === "ESARDEEN" || activeUserSession === "ESARDEEN_JAIKARAN") {
-
+if (
+    activeUserSession === "Anjuman" ||
+    activeUserSession === "ESARDEEN" ||
+    activeUserSession === "ESARDEEN_JAIKARAN"
+) {
     navAvatar.style.display = "none";
     headerAvatar.style.display = "none";
 
@@ -2586,7 +2589,7 @@ document.getElementById("balance-eye").className = "fas fa-eye text-xl";
 const incomeCard = document.getElementById("monthly-income-card");
 const expensesCard = document.getElementById("monthly-expenses-card");
 
-if (activeUserSession === "ESARDEEN" || activeUserSession === "ESARDEEN_JAIKARAN") {
+if (activeUserSession === "Anjuman" || activeUserSession === "ESARDEEN_JAIKARAN") {
     incomeCard.style.display = "none";
     expensesCard.style.display = "none";
 } else {
