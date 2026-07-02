@@ -1,0 +1,4163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omni-Wealth Bank - Online Banking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: system-ui; }
+    .debit { color: #ef4444; font-weight: bold; }
+    .credit { color: #22c55e; font-weight: bold; }
+    .hidden { display: none !important; }
+    .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://picsum.photos/id/1015/1920/1080'); background-size: cover; }
+		.perspective-\[1800px\]{
+    perspective:1800px;
+}
+
+#iphone-demo{
+    transform-style:preserve-3d;
+    animation:
+phoneShowcase 20s cubic-bezier(.45,.05,.15,1) infinite;
+filter:drop-shadow(0 35px 55px rgba(0,0,0,.28));
+}
+
+@keyframes phoneShowcase{
+
+0%{
+transform:
+rotateY(-18deg)
+rotateX(6deg)
+translateY(0px);
+}
+
+25%{
+transform:
+rotateY(-8deg)
+rotateX(4deg)
+translateY(-8px);
+}
+
+50%{
+transform:
+rotateY(0deg)
+rotateX(0deg)
+translateY(-12px);
+}
+
+75%{
+transform:
+rotateY(8deg)
+rotateX(4deg)
+translateY(-8px);
+}
+
+100%{
+transform:
+rotateY(18deg)
+rotateX(6deg)
+translateY(0px);
+}
+
+}
+
+@keyframes phoneScreenScroll{
+
+0%{
+transform:translateY(0);
+}
+
+15%{
+transform:translateY(0);
+}
+
+35%{
+transform:translateY(-120px);
+}
+
+55%{
+transform:translateY(-250px);
+}
+
+75%{
+transform:translateY(-390px);
+}
+
+90%{
+transform:translateY(-250px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+@keyframes balanceGlow{
+
+0%,100%{
+transform:scale(1);
+text-shadow:0 0 0 rgba(16,185,129,.0);
+}
+
+50%{
+transform:scale(1.02);
+text-shadow:0 0 18px rgba(16,185,129,.35);
+}
+
+}
+
+.balance-live{
+animation:balanceGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes livePulse{
+
+0%,100%{
+opacity:1;
+transform:scale(1);
+}
+
+50%{
+opacity:.7;
+transform:scale(.94);
+}
+
+}
+
+.live-indicator{
+animation:livePulse 2s infinite;
+}
+
+
+@keyframes growBar{
+
+from{
+width:0;
+}
+
+}
+
+@keyframes notify{
+
+0%,30%,100%{
+opacity:0;
+transform:
+translateY(-18px)
+scale(.96);
+}
+
+40%,80%{
+opacity:1;
+transform:
+translateY(0)
+scale(1);
+}
+
+}
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <div id="home-page">
+
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-200">
+
+  <div class="max-w-7xl mx-auto px-5">
+
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Left -->
+
+      <div class="flex items-center gap-3">
+
+        <button id="menuBtn" class="lg:hidden text-gray-700 text-2xl">
+
+          <i id="menuIcon" class="fas fa-bars"></i>
+
+        </button>
+
+        <a href="#" class="flex items-center gap-3 transition duration-300 hover:scale-105">
+
+          <img src="https://res.cloudinary.com/daf2dvttg/image/upload/v1782119127/IMG_7785_yzjmyj.png"
+          class="h-11 w-auto">
+
+          <div>
+
+            <h1 class="font-black text-lg text-teal-700 leading-none">
+
+              Omni-Wealth
+
+            </h1>
+
+            <p class="text-[11px] uppercase tracking-[3px] text-gray-500">
+
+              Bank
+
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+      <!-- Desktop Menu -->
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Personal
+    </a>
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Business
+    </a>
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Commercial
+    </a>
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Investments
+    </a>
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Loans
+    </a>
+
+    <a href="#" class="relative text-gray-700 hover:text-teal-700 transition duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-teal-700 after:transition-all after:duration-300 hover:after:w-full">
+        Support
+    </a>
+
+</nav>
+
+      <!-- Right -->
+
+      <div class="flex items-center gap-3">
+
+        <button class="hidden md:flex items-center gap-2 text-gray-600">
+
+          <i class="fas fa-search"></i>
+
+        </button>
+
+        <button class="hidden md:block text-gray-700 font-medium">
+
+          Find ATM
+
+        </button>
+
+        <button class="hidden md:block bg-teal-50 text-teal-700 px-5 py-2 rounded-full font-semibold hover:bg-teal-100 transition">
+
+          Open Account
+
+        </button>
+
+        <button onclick="showLoginModal()"
+        class="bg-teal-700 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-teal-800 transition">
+
+          Log In
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-gray-200 bg-white opacity-0 -translate-y-2 transition-all duration-200">
+
+    <div class="flex flex-col py-4">
+
+      <a href="#" class="px-6 py-3 hover:bg-teal-50 hover:text-teal-700 transition">     Personal </a>
+
+      <a href="#" class="px-6 py-3">Business</a>
+
+      <a href="#" class="px-6 py-3">Commercial</a>
+
+      <a href="#" class="px-6 py-3">Investments</a>
+
+      <a href="#" class="px-6 py-3">Loans</a>
+
+      <a href="#" class="px-6 py-3">Support</a>
+
+      <a href="#" class="px-6 py-3">Find ATM</a>
+
+      <a href="#" class="px-6 py-3 font-semibold text-teal-700">
+
+        Open Account
+
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+    <section class="hero min-h-screen flex items-center">
+
+<div class="max-w-7xl mx-auto px-6 w-full">
+
+<div class="max-w-3xl text-white">
+
+<p class="uppercase tracking-[5px] text-teal-300 font-semibold mb-5">
+
+PRIVATE WEALTH • GLOBAL CUSTODY
+
+</p>
+
+<h1 class="text-5xl md:text-7xl font-black leading-tight">
+
+Private Wealth.
+
+Institutional Custody.
+
+Global Capital Solutions.
+
+</h1>
+
+<p class="mt-8 text-xl text-gray-200 leading-8 max-w-2xl">
+
+Omni-Wealth delivers private banking, institutional custody and global wealth solutions designed to preserve, protect and grow capital across generations.
+
+</p>
+
+<div class="flex flex-col sm:flex-row gap-5 mt-12">
+
+<button onclick="showLoginModal()"
+
+class="bg-teal-600 hover:bg-teal-700 transition px-10 py-5 rounded-full font-bold text-lg">
+
+Secure Client Login
+
+</button>
+
+<button
+
+class="border-2 border-white hover:bg-white hover:text-gray-900 transition px-10 py-5 rounded-full font-bold text-lg">
+
+Request Private Banking
+
+</button>
+
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+
+<div>
+
+<i class="fas fa-shield-halved text-teal-300 text-2xl mb-3"></i>
+
+<p>Institutional Asset Custody</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-globe text-teal-300 text-2xl mb-3"></i>
+
+<p>Global Securities Settlement</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-coins text-teal-300 text-2xl mb-3"></i>
+
+<p>Dividend & Corporate Actions</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-user-tie text-teal-300 text-2xl mb-3"></i>
+
+<p>Dedicated Relationship Managers</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="py-20 bg-slate-950 text-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<span class="uppercase tracking-[4px] text-teal-300 font-semibold">
+INSTITUTIONAL SERVICES
+</span>
+
+<h2 class="text-5xl font-bold mt-4">
+Comprehensive Global Custody Solutions
+</h2>
+
+<p class="max-w-3xl mx-auto mt-6 text-gray-300 text-lg leading-8">
+Our institutional platform delivers end-to-end custody, settlement and asset servicing solutions for financial institutions, family offices, sovereign entities and investment managers.
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-landmark text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Global Custody</h3>
+<p class="text-gray-300">
+Safekeeping of domestic and international securities across multiple markets.
+</p>
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-globe text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Cross-Border Settlement</h3>
+<p class="text-gray-300">
+Efficient settlement services with access to major global financial markets.
+</p>
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-coins text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Corporate Actions</h3>
+<p class="text-gray-300">
+Dividend processing, proxy voting, income collection and corporate action administration.
+</p>
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-chart-line text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Investment Reporting</h3>
+<p class="text-gray-300">
+Detailed portfolio reporting with institutional-grade transparency and analytics.
+</p>
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-building-columns text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Fund Administration</h3>
+<p class="text-gray-300">
+Operational support for investment funds, private equity and alternative assets.
+</p>
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+<i class="fas fa-user-tie text-4xl text-teal-400 mb-6"></i>
+<h3 class="text-2xl font-bold mb-4">Dedicated Relationship Management</h3>
+<p class="text-gray-300">
+Dedicated relationship managers providing bespoke guidance and institutional support across global markets.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+    <section class="py-20 bg-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-14">
+
+<span class="text-teal-700 font-semibold uppercase tracking-[3px]">
+
+PRIVATE WEALTH SOLUTIONS
+
+</span>
+
+<h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-3">
+
+Solutions Designed for Long-Term Wealth Preservation
+
+</h2>
+
+<p class="max-w-3xl mx-auto mt-5 text-lg text-gray-500">
+
+Omni-Wealth delivers integrated custody, private banking and fiduciary solutions tailored to high-net-worth individuals, family offices and institutional investors.
+
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+<!-- CARD 1 -->
+
+<div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+<div class="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-user-tie text-2xl text-teal-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Private Banking
+
+</h3>
+
+<p class="text-gray-500 mb-8">
+
+Personalized banking supported by dedicated relationship managers and tailored liquidity solutions.
+
+</p>
+
+<button class="text-teal-700 font-semibold">
+
+Learn More →
+
+</button>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+<div class="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-vault text-2xl text-green-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Securities Custody
+
+</h3>
+
+<p class="text-gray-500 mb-8">
+
+Secure custody of equities, fixed income securities and alternative investment assets worldwide.
+
+</p>
+
+<button class="text-teal-700 font-semibold">
+
+Explore Custody →
+
+</button>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+<div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-chart-line text-2xl text-blue-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Wealth Advisory
+
+</h3>
+
+<p class="text-gray-500 mb-8">
+
+Strategic portfolio guidance focused on capital preservation and long-term investment growth.
+
+</p>
+
+<button class="text-teal-700 font-semibold">
+
+Meet an Advisor →
+
+</button>
+
+</div>
+
+<!-- CARD 4 -->
+
+<div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+<div class="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-scale-balanced text-2xl text-amber-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Trust & Estate Services
+
+</h3>
+
+<p class="text-gray-500 mb-8">
+
+Comprehensive fiduciary and estate administration services designed to preserve generational wealth.
+
+</p>
+
+<button class="text-teal-700 font-semibold">
+
+View Services →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<span class="uppercase tracking-[4px] text-teal-300 font-semibold">
+
+WHY LEADING CLIENTS CHOOSE OMNI-WEALTH
+
+</span>
+
+<h2 class="text-5xl font-bold mt-4">
+
+Institutional Strength.
+Private Attention.
+
+</h2>
+
+<p class="max-w-3xl mx-auto mt-6 text-lg text-gray-300 leading-8">
+
+Every custody relationship is supported by institutional infrastructure, global market access and dedicated professionals committed to protecting and administering wealth across generations.
+
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+$480B+
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Assets Under Administration
+
+</h4>
+
+<p class="text-gray-300">
+
+Institutional custody and administration for diversified global investment portfolios.
+
+</p>
+
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+80+
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Global Markets
+
+</h4>
+
+<p class="text-gray-300">
+
+Settlement and custody coverage across developed and emerging financial markets.
+
+</p>
+
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+99.98%
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Settlement Accuracy
+
+</h4>
+
+<p class="text-gray-300">
+
+Operational precision backed by institutional controls and reconciliation processes.
+
+</p>
+
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+120+
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Countries Served
+
+</h4>
+
+<p class="text-gray-300">
+
+Supporting internationally diversified clients and cross-border investment activity.
+
+</p>
+
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+24/7
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Relationship Coverage
+
+</h4>
+
+<p class="text-gray-300">
+
+Dedicated client teams providing responsive service for complex custody requirements.
+
+</p>
+
+</div>
+
+<div class="bg-white/5 rounded-3xl p-8 border border-white/10">
+
+<h3 class="text-4xl font-black text-teal-300 mb-4">
+
+20+
+
+</h3>
+
+<h4 class="text-xl font-bold mb-3">
+
+Years of Experience
+
+</h4>
+
+<p class="text-gray-300">
+
+Trusted experience delivering secure wealth administration and institutional custody solutions.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+    
+    <section class="py-20 bg-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+
+<div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition">
+
+<div class="w-14 h-14 rounded-2xl bg-teal-100 flex items-center justify-center mb-5">
+
+<i class="fas fa-building-columns text-teal-700 text-xl"></i>
+
+</div>
+
+<h4 class="font-bold text-lg mb-2">
+Relationship Management
+</h4>
+
+<p class="text-gray-500 leading-7">
+
+Dedicated advisors delivering bespoke banking, lending and long-term wealth strategies.
+
+</p>
+
+</div>
+
+<div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition">
+
+<div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-5">
+
+<i class="fas fa-chart-line text-blue-700 text-xl"></i>
+
+</div>
+
+<h4 class="font-bold text-lg mb-2">
+
+Investment Custody
+
+</h4>
+
+<p class="text-gray-500 leading-7">
+
+Safekeeping and administration of domestic and international investment portfolios.
+
+</p>
+
+</div>
+
+<div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition">
+
+<div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5">
+
+<i class="fas fa-scale-balanced text-green-700 text-xl"></i>
+
+</div>
+
+<h4 class="font-bold text-lg mb-2">
+
+Trust Services
+
+</h4>
+
+<p class="text-gray-500 leading-7">
+
+Estate administration, fiduciary oversight and multigenerational wealth preservation.
+
+</p>
+
+</div>
+
+<div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition">
+
+<div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center mb-5">
+
+<i class="fas fa-earth-americas text-purple-700 text-xl"></i>
+
+</div>
+
+<h4 class="font-bold text-lg mb-2">
+
+Global Reach
+
+</h4>
+
+<p class="text-gray-500 leading-7">
+
+Integrated custody support across major financial centres and international markets.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+    <section class="py-24 bg-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<span class="uppercase tracking-[4px] text-teal-700 font-semibold">
+
+SECURITY & TRUST
+
+</span>
+
+<h2 class="text-5xl font-bold mt-4 text-gray-900">
+
+Your security is our highest priority.
+
+</h2>
+
+<p class="max-w-3xl mx-auto mt-6 text-lg text-gray-500 leading-8">
+
+Omni-Wealth combines advanced security technologies, trusted financial practices and continuous monitoring to help protect every account and every transaction.
+
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+<div class="bg-gray-50 rounded-3xl p-8">
+
+<div class="w-16 h-16 rounded-2xl bg-teal-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-lock text-2xl text-teal-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+256-bit Encryption
+
+</h3>
+
+<p class="text-gray-500">
+
+Every online session is protected using enterprise-grade encryption technology.
+
+</p>
+
+</div>
+
+<div class="bg-gray-50 rounded-3xl p-8">
+
+<div class="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-user-shield text-2xl text-green-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Fraud Monitoring
+
+</h3>
+
+<p class="text-gray-500">
+
+Continuous monitoring helps identify suspicious activity before it becomes a problem.
+
+</p>
+
+</div>
+
+<div class="bg-gray-50 rounded-3xl p-8">
+
+<div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-fingerprint text-2xl text-blue-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Biometric Login
+
+</h3>
+
+<p class="text-gray-500">
+
+Secure authentication with Face ID and fingerprint technology where supported.
+
+</p>
+
+</div>
+
+<div class="bg-gray-50 rounded-3xl p-8">
+
+<div class="w-16 h-16 rounded-2xl bg-yellow-100 flex items-center justify-center mb-6">
+
+<i class="fas fa-building-columns text-2xl text-yellow-700"></i>
+
+</div>
+
+<h3 class="text-xl font-bold mb-3">
+
+Trusted Banking
+
+</h3>
+
+<p class="text-gray-500">
+
+Committed to responsible banking practices, transparency and long-term customer relationships.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="mt-20">
+
+<div class="bg-gradient-to-r from-teal-700 to-slate-900 rounded-[40px] p-12 text-white">
+
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+
+<div>
+
+<span class="uppercase tracking-[4px] text-teal-200">
+
+Speak With A Specialist
+
+</span>
+
+<h3 class="text-4xl font-bold mt-4">
+
+Our specialists are ready to help.
+
+</h3>
+
+<p class="mt-6 text-lg text-teal-100">
+
+Whether you have questions about your accounts, online banking or security, our team is here to assist you.
+
+</p>
+
+</div>
+
+<div class="space-y-5">
+
+<div class="flex items-center gap-4">
+
+<i class="fas fa-phone text-2xl"></i>
+
+<div>
+
+<p class="font-semibold">
+
+24/7 Customer Support
+
+</p>
+
+<p class="text-teal-100">
+
++1 (800) 555-OWBC
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex items-center gap-4">
+
+<i class="fas fa-envelope text-2xl"></i>
+
+<div>
+
+<p class="font-semibold">
+
+Email Support
+
+</p>
+
+<p class="text-teal-100">
+
+support@omniwealth.online
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex items-center gap-4">
+
+<i class="fas fa-location-dot text-2xl"></i>
+
+<div>
+
+<p class="font-semibold">
+
+Head Office
+
+</p>
+
+<p class="text-teal-100">
+
+New York, USA
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="py-24 bg-gray-50">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+
+<!-- LEFT -->
+
+<div>
+
+<span class="uppercase tracking-[4px] text-teal-700 font-semibold">
+
+OMNI-WEALTH MOBILE
+
+</span>
+
+<h2 class="text-5xl font-bold text-gray-900 mt-4 leading-tight">
+
+Institutional Wealth.
+
+In Your Pocket.
+
+</h2>
+
+<p class="mt-6 text-lg text-gray-500 leading-8">
+
+Access custody portfolios, authorize institutional requests, receive corporate action notifications, approve settlement instructions and securely communicate with your dedicated Omni-Wealth relationship team from anywhere in the world.
+
+</p>
+
+<div class="mt-10 space-y-6">
+
+<div class="flex items-center gap-4">
+
+<div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center">
+
+<i class="fas fa-fingerprint text-teal-700"></i>
+
+</div>
+
+<div>
+
+<h4 class="font-bold">
+
+Biometric Secure Access
+
+</h4>
+
+<p class="text-gray-500">
+
+Multi-factor authentication with enterprise-grade protection.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex items-center gap-4">
+
+<div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+
+<i class="fas fa-bell text-green-700"></i>
+
+</div>
+
+<div>
+
+<h4 class="font-bold">
+
+Corporate Action Alerts
+
+</h4>
+
+<p class="text-gray-500">
+
+Stay informed about dividends, voting events and settlements.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex items-center gap-4">
+
+<div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+
+<i class="fas fa-check-double text-blue-700"></i>
+
+</div>
+
+<div>
+
+<h4 class="font-bold">
+
+Secure Approval Workflows
+
+</h4>
+
+<p class="text-gray-500">
+
+Authorize custody requests and investment instructions securely.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="flex gap-4 mt-10">
+
+<button class="bg-black text-white px-6 py-4 rounded-2xl">
+
+<i class="fab fa-apple mr-2"></i>
+
+Coming Soon for iPhone
+
+</button>
+
+<button class="bg-black text-white px-6 py-4 rounded-2xl">
+
+<i class="fab fa-google-play mr-2"></i>
+
+Coming Soon for Android
+
+</button>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="flex justify-center relative">
+	<!-- Ambient Glow -->
+
+<div
+class="absolute w-[520px] h-[520px]
+rounded-full
+bg-teal-400/20
+blur-[110px]
+animate-pulse">
+</div>
+
+<div class="perspective-[1800px]">
+
+<div id="iphone-demo"
+class="relative
+w-[315px]
+h-[645px]
+rounded-[58px]
+bg-black
+p-[10px]
+shadow-[0_45px_90px_rgba(0,0,0,.35)]">
+
+    <!-- Titanium frame reflection -->
+    <div class="absolute inset-0 rounded-[62px] pointer-events-none
+    bg-gradient-to-br
+    from-white/15
+    via-transparent
+    to-black/20"></div>
+
+<!-- Dynamic Island -->
+<div
+class="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-full z-30 shadow-lg">
+</div>
+
+<!-- Screen -->
+<div
+class="relative
+overflow-hidden
+rounded-[48px]
+bg-white
+h-[625px]">
+<div class="absolute inset-0 rounded-[48px] pointer-events-none bg-gradient-to-br from-white/10 via-transparent to-black/10 z-40"></div>
+
+<div class="relative">
+
+<!-- iPhone Status Bar -->
+<div class="absolute
+top-0
+left-0
+right-0
+z-50
+flex
+justify-between
+items-center
+px-6
+pt-3
+text-white
+text-sm
+font-semibold">
+
+<span>9:41</span>
+
+<div class="flex items-center gap-1 text-xs">
+
+<i class="fas fa-signal"></i>
+
+<span>LTE</span>
+
+<i class="fas fa-battery-three-quarters text-base"></i>
+
+</div>
+
+</div>
+
+<img
+src="..."
+class="relative z-0 w-full h-36 object-cover object-top">
+
+</div>
+
+<div id="phone-screen-content"
+
+class="absolute
+left-0
+top-0
+w-full
+bg-white
+animate-[phoneScreenScroll_20s_ease-in-out_infinite]">
+
+<!-- Floating Live Notification -->
+<!-- iPhone Notification -->
+
+<div class="absolute
+top-14
+left-1/2
+-translate-x-1/2
+w-[88%]
+z-50
+rounded-3xl
+backdrop-blur-xl
+bg-white/80
+border
+border-white/60
+shadow-2xl
+px-4
+py-3
+animate-[notify_8s_ease-in-out_infinite]">
+
+<div class="flex items-center gap-3">
+
+<div class="w-10 h-10 rounded-xl bg-teal-700 flex items-center justify-center">
+
+<i class="fas fa-building-columns text-white text-sm"></i>
+
+</div>
+
+<div class="flex-1">
+
+<div class="flex justify-between">
+
+<p class="text-xs font-bold tracking-wide">
+
+OMNI-WEALTH
+
+</p>
+
+<span class="text-[10px] text-gray-500">
+
+Just now
+
+</span>
+
+</div>
+
+<p class="text-xs text-gray-600 mt-1">
+
+Corporate Action Processed
+
+</p>
+
+<p class="font-semibold text-sm mt-1">
+
+International Equity Fund
+
+</p>
+
+<p class="text-green-600 font-bold mt-1">
+
++$4,520.00
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="px-5 pt-5">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-xs uppercase tracking-[2px] text-gray-500">
+PRIVATE WEALTH DASHBOARD
+</p>
+
+<h2 class="text-xl font-bold text-gray-900 mt-1">
+Demo Client
+</h2>
+
+<p class="text-sm text-gray-500">
+Institutional Custody Account
+</p>
+
+</div>
+
+<div class="w-11 h-11 rounded-full bg-gradient-to-br from-gray-300 via-gray-200 to-gray-400 flex items-center justify-center">
+
+<i class="fas fa-user text-white text-lg"></i>
+
+</div>
+
+</div>
+
+<div class="mt-6 rounded-[28px] bg-gradient-to-br from-teal-700 via-teal-600 to-emerald-600 text-white p-5 shadow-lg">
+
+<div class="flex justify-between items-start">
+
+<div>
+
+<p class="text-xs opacity-80">
+Assets Under Custody
+</p>
+
+<h2 class="text-3xl font-black mt-2 balance-live">
+$418,321.05
+</h2>
+
+</div>
+
+<span class="live-indicator bg-white/20 px-3 py-1 rounded-full text-xs">
+LIVE
+</span>
+
+</div>
+
+<div class="mt-5 flex justify-between">
+
+<div>
+
+<p class="text-xs opacity-70">
+Today's Change
+</p>
+
+<strong class="text-green-200">
++$2,846.18
+</strong>
+
+</div>
+
+<div>
+
+<p class="text-xs opacity-70">
+YTD
+</p>
+
+<strong>
++18.41%
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid grid-cols-4 gap-3 mt-6">
+
+<div class="text-center">
+
+<div class="w-12 h-12 rounded-2xl bg-teal-100 flex items-center justify-center mx-auto">
+
+<i class="fas fa-chart-pie text-teal-700"></i>
+
+</div>
+
+<p class="text-[11px] mt-2">
+Portfolio
+</p>
+
+</div>
+
+<div class="text-center">
+
+<div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center mx-auto">
+
+<i class="fas fa-vault text-blue-700"></i>
+
+</div>
+
+<p class="text-[11px] mt-2">
+Custody
+</p>
+
+</div>
+
+<div class="text-center">
+
+<div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center mx-auto">
+
+<i class="fas fa-arrow-right-arrow-left text-green-700"></i>
+
+</div>
+
+<p class="text-[11px] mt-2">
+Transfers
+</p>
+
+</div>
+
+<div class="text-center">
+
+<div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mx-auto">
+
+<i class="fas fa-comments text-purple-700"></i>
+
+</div>
+
+<p class="text-[11px] mt-2">
+Messages
+</p>
+
+</div>
+
+</div>
+
+<div class="mt-7">
+
+<div class="flex justify-between items-center mb-3">
+
+<h3 class="font-semibold text-gray-900">
+Portfolio Allocation
+</h3>
+
+<span class="text-xs text-teal-700">
+Updated Today
+</span>
+
+</div>
+
+<div class="space-y-3">
+
+<div>
+
+<div class="flex justify-between text-sm mb-1">
+
+<span>Equities</span>
+
+<strong>68%</strong>
+
+</div>
+
+<div class="h-2 rounded-full bg-gray-200 overflow-hidden">
+
+<div class="h-full bg-teal-600 rounded-full animate-[growBar_2s_ease-out]" style="width:68%;"></div>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="flex justify-between text-sm mb-1">
+
+<span>Fixed Income</span>
+
+<strong>22%</strong>
+
+</div>
+
+<div class="h-2 rounded-full bg-gray-200 overflow-hidden">
+
+<div class="h-full bg-blue-600 rounded-full animate-[growBar_2s_ease-out]" style="width:22%;"></div>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="flex justify-between text-sm mb-1">
+
+<span>Cash Holdings</span>
+
+<strong>10%</strong>
+
+</div>
+
+<div class="h-2 rounded-full bg-gray-200 overflow-hidden">
+
+<div class="h-full bg-green-500 rounded-full animate-[growBar_2s_ease-out]" style="width:10%;"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="mt-5 border-t pt-4">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="font-semibold text-sm">
+Dividend Received
+</p>
+
+<p class="text-xs text-gray-500">
+International Equity Fund
+</p>
+
+</div>
+
+<strong class="text-green-600">
++$4,520
+</strong>
+
+</div>
+
+</div>
+
+<div class="border-t mt-6">
+
+<div class="grid grid-cols-4 text-center py-4 text-gray-400">
+
+<div>
+
+<i class="fas fa-house text-teal-700"></i>
+
+<p class="text-[10px] mt-1 text-teal-700">
+Home
+</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-chart-line"></i>
+
+<p class="text-[10px] mt-1">
+Markets
+</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-bell"></i>
+
+<p class="text-[10px] mt-1">
+Alerts
+</p>
+
+</div>
+
+<div>
+
+<i class="fas fa-user-circle"></i>
+
+<p class="text-[10px] mt-1">
+Profile
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="py-24 bg-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-16">
+
+<span class="uppercase tracking-[4px] text-teal-700 font-semibold">
+
+INVESTMENT INTELLIGENCE
+
+</span>
+
+<h2 class="text-5xl font-bold text-gray-900 mt-4">
+
+Insights That Move Capital.
+
+</h2>
+
+<p class="max-w-3xl mx-auto mt-6 text-lg text-gray-500 leading-8">
+
+Institutional reporting and portfolio intelligence designed to help clients monitor investment performance, custody activity and long-term capital preservation.
+
+</p>
+
+</div>
+
+<div class="grid lg:grid-cols-2 gap-8">
+
+<div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+
+<div class="flex justify-between items-center mb-8">
+
+<h3 class="text-xl font-bold">
+
+Portfolio Performance
+
+</h3>
+
+<span class="text-green-600 font-semibold">
+
+↑ 12% vs last quarter
+
+</span>
+
+</div>
+
+<div class="space-y-6">
+
+<div>
+
+	
+
+<div>
+    <div class="flex justify-between mb-2">
+        <span>Global Equities</span>
+        <strong>+14.2%</strong>
+    </div>
+
+    <div class="w-full bg-gray-200 rounded-full h-3">
+        <div class="bg-teal-700 h-3 rounded-full" style="width:84%"></div>
+    </div>
+</div>
+
+<div>
+    <div class="flex justify-between mb-2">
+        <span>Fixed Income</span>
+        <strong>+6.8%</strong>
+    </div>
+
+    <div class="w-full bg-gray-200 rounded-full h-3">
+        <div class="bg-blue-600 h-3 rounded-full" style="width:58%"></div>
+    </div>
+</div>
+
+<div>
+    <div class="flex justify-between mb-2">
+        <span>Alternative Assets</span>
+        <strong>+11.5%</strong>
+    </div>
+
+    <div class="w-full bg-gray-200 rounded-full h-3">
+        <div class="bg-green-600 h-3 rounded-full" style="width:73%"></div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="space-y-8">
+
+<div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+
+<div class="flex justify-between">
+
+<div>
+
+<p class="text-gray-500">
+
+Asset Allocation
+
+</p>
+
+<h3 class="text-4xl font-bold mt-2">
+
+68%
+
+</h3>
+
+</div>
+
+<i class="fas fa-piggy-bank text-4xl text-teal-700"></i>
+
+</div>
+
+<div class="w-full bg-gray-200 rounded-full h-4 mt-8">
+
+<div class="bg-teal-700 h-4 rounded-full" style="width:68%"></div>
+
+</div>
+
+<p class="mt-4 text-gray-500">
+
+Equities currently represent the largest allocation within the portfolio.
+
+</p>
+
+</div>
+
+<div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-gray-500">
+
+Custody Status
+
+</p>
+
+<h3 class="text-4xl font-bold mt-2">
+
+ACTIVE
+
+</h3>
+
+<p class="text-green-600 font-semibold">
+
+All global custody accounts reconciled successfully.
+
+</p>
+
+</div>
+
+<div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
+
+<i class="fas fa-chart-line text-3xl text-green-700"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="relative py-28 bg-slate-950 overflow-hidden">
+
+<!-- Background Glow -->
+<div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950"></div>
+
+<div class="absolute inset-0 opacity-10">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
+class="w-full h-full object-cover">
+
+</div>
+
+<div class="relative max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-20">
+
+<span class="uppercase tracking-[5px] text-teal-300 font-semibold">
+
+GLOBAL PRESENCE
+
+</span>
+
+<h2 class="text-5xl font-black text-white mt-4">
+
+Supporting Global Capital
+Across Major Financial Centres
+
+</h2>
+
+<p class="max-w-3xl mx-auto mt-8 text-lg text-slate-300 leading-8">
+
+Omni-Wealth provides institutional custody, private banking and wealth solutions across the world's leading financial centres through an integrated global platform.
+
+</p>
+
+</div>
+<!-- Global Financial Hubs -->
+
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+
+<!-- Left -->
+
+<div class="relative">
+
+<div class="relative h-[500px]">
+
+<!-- New York -->
+
+<div class="absolute top-[30%] left-[23%]">
+
+<div class="w-4 h-4 bg-teal-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-teal-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+New York
+
+</p>
+
+</div>
+
+<!-- London -->
+
+<div class="absolute top-[22%] left-[46%]">
+
+<div class="w-4 h-4 bg-blue-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-blue-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+London
+
+</p>
+
+</div>
+
+<!-- Zurich -->
+
+<div class="absolute top-[28%] left-[49%]">
+
+<div class="w-4 h-4 bg-green-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-green-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+Zurich
+
+</p>
+
+</div>
+
+<!-- Dubai -->
+
+<div class="absolute top-[38%] left-[61%]">
+
+<div class="w-4 h-4 bg-yellow-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-yellow-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+Dubai
+
+</p>
+
+</div>
+
+<!-- Singapore -->
+
+<div class="absolute top-[58%] left-[76%]">
+
+<div class="w-4 h-4 bg-purple-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-purple-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+Singapore
+
+</p>
+
+</div>
+
+<!-- Hong Kong -->
+
+<div class="absolute top-[48%] left-[81%]">
+
+<div class="w-4 h-4 bg-pink-400 rounded-full animate-ping absolute"></div>
+
+<div class="w-4 h-4 bg-pink-400 rounded-full relative"></div>
+
+<p class="text-white mt-3 text-sm font-semibold">
+
+Hong Kong
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+<!-- Right -->
+
+<div class="space-y-6">
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-7">
+
+<div class="flex items-center gap-4">
+
+<div class="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center">
+
+<i class="fas fa-earth-americas text-teal-300 text-2xl"></i>
+
+</div>
+
+<div>
+
+<h3 class="text-white font-bold text-xl">
+
+Cross-Border Custody
+
+</h3>
+
+<p class="text-slate-300 mt-2">
+
+Institutional safekeeping across major international markets with integrated reporting.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-7">
+
+<div class="flex items-center gap-4">
+
+<div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+
+<i class="fas fa-money-bill-transfer text-blue-300 text-2xl"></i>
+
+</div>
+
+<div>
+
+<h3 class="text-white font-bold text-xl">
+
+Multi-Currency Settlement
+
+</h3>
+
+<p class="text-slate-300 mt-2">
+
+Efficient settlement and cash movement across multiple currencies and jurisdictions.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-7">
+
+<div class="flex items-center gap-4">
+
+<div class="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center">
+
+<i class="fas fa-network-wired text-green-300 text-2xl"></i>
+
+</div>
+
+<div>
+
+<h3 class="text-white font-bold text-xl">
+
+Local Market Expertise
+
+</h3>
+
+<p class="text-slate-300 mt-2">
+
+Regional specialists supporting institutional investment activity around the globe.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-7">
+
+<div class="flex items-center gap-4">
+
+<div class="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+
+<i class="fas fa-headset text-purple-300 text-2xl"></i>
+
+</div>
+
+<div>
+
+<h3 class="text-white font-bold text-xl">
+
+24/7 Global Coverage
+
+</h3>
+
+<p class="text-slate-300 mt-2">
+
+Relationship teams available around the clock to support complex global custody operations.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+    <footer class="bg-slate-950 text-gray-300 pt-20 pb-8">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="grid lg:grid-cols-5 gap-12">
+
+<!-- COMPANY -->
+
+<div>
+
+<h2 class="text-3xl font-black text-white">
+
+Omni-Wealth
+
+</h2>
+
+<p class="text-teal-400 tracking-[4px] uppercase text-sm mt-1">
+
+Bank
+
+</p>
+
+<p class="mt-6 leading-8 text-gray-400">
+
+Private Banking • Global Custody • Wealth Management
+
+</p>
+
+<div class="flex gap-4 mt-8 text-xl">
+
+<i class="fab fa-facebook hover:text-white cursor-pointer"></i>
+
+<i class="fab fa-instagram hover:text-white cursor-pointer"></i>
+
+<i class="fab fa-linkedin hover:text-white cursor-pointer"></i>
+
+<i class="fab fa-x-twitter hover:text-white cursor-pointer"></i>
+
+</div>
+
+</div>
+
+<!-- PERSONAL -->
+
+<div>
+
+<h3 class="text-white font-bold text-lg mb-5">
+
+Personal
+
+</h3>
+
+<div class="space-y-3">
+
+<p>Private Banking</p>
+
+<p>Wealth Management</p>
+
+<p>Trust Services</p>
+
+<p>Investment Advisory</p>
+
+<p>Family Office</p>
+
+</div>
+
+</div>
+
+<!-- BUSINESS -->
+
+<div>
+
+<h3 class="text-white font-bold text-lg mb-5">
+
+Business
+
+</h3>
+
+<div class="space-y-3">
+
+<p>Commercial Banking</p>
+
+<p>Treasury Solutions</p>
+
+<p>Corporate Custody</p>
+
+<p>Institutional Lending</p>
+
+<p>Escrow Services</p>
+
+</div>
+
+</div>
+
+<!-- RESOURCES -->
+
+<div>
+
+<h3 class="text-white font-bold text-lg mb-5">
+
+Resources
+
+</h3>
+
+<div class="space-y-3">
+
+<p>Security Center</p>
+
+<p>Financial Education</p>
+
+<p>Calculators</p>
+
+<p>Fraud Prevention</p>
+
+<p>Support</p>
+
+</div>
+
+</div>
+
+<!-- CONTACT -->
+
+<div>
+
+<h3 class="text-white font-bold text-lg mb-5">
+
+Contact
+
+</h3>
+
+<div class="space-y-5">
+
+<div class="flex gap-3">
+
+<i class="fas fa-location-dot text-teal-400 mt-1"></i>
+
+<div>
+
+<p>New York, NY</p>
+
+<p>United States</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-3">
+
+<i class="fas fa-phone text-teal-400 mt-1"></i>
+
+<div>
+
+<p>24/7 Support</p>
+
+<p>+1 (365) 480-6368</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-3">
+
+<i class="fas fa-envelope text-teal-400 mt-1"></i>
+
+<div>
+
+<p>support@omniwealth.online</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="border-gray-800 my-14">
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<div>
+
+<p>
+
+© 2026 Omni-Wealth Bank. All rights reserved.
+
+</p>
+
+<p class="text-sm text-gray-500 mt-2">
+
+Member FDIC • Equal Housing Lender • Privacy • Terms • Accessibility
+
+</p>
+
+</div>
+
+<div class="flex md:justify-end items-center">
+
+<p class="text-sm text-gray-500 uppercase tracking-[2px]">
+Secure • Trusted • Global
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+  </div>
+
+  <div id="dashboard-page" class="hidden">
+    <div class="bg-teal-700 text-white p-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-bars text-xl"></i>
+        
+        <div class="flex items-center gap-2 ml-2">
+          <img src="https://res.cloudinary.com/daf2dvttg/image/upload/v1782119127/IMG_7785_yzjmyj.png" alt="Logo" class="h-9 w-auto object-contain flex-shrink-0">
+          
+          <div class="flex flex-col items-center justify-center select-none leading-none px-1 text-center">
+            <span class="text-xs md:text-sm font-black tracking-tight uppercase whitespace-nowrap">Omni-Wealth</span>
+            <span class="text-[10px] md:text-xs font-bold tracking-widest uppercase opacity-90 mt-0.5">Bank</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="relative">
+    <img id="nav-avatar" class="w-10 h-10 rounded-full border-2 border-white object-cover">
+
+    <div
+        id="nav-avatar-text"
+        class="hidden w-10 h-10 rounded-full border-2 border-white bg-emerald-700 text-white font-bold text-sm items-center justify-center">
+        AAB
+    </div>
+</div>
+        <button onclick="logout()" class="bg-teal-800 px-4 py-2 rounded-xl text-sm font-medium hover:bg-teal-900">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto p-4 md:p-6 space-y-6">
+      <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center gap-4">
+          <div class="relative">
+    <img id="header-avatar"
+         class="w-16 h-16 rounded-2xl border border-gray-200 shadow-sm object-cover">
+
+    <div
+        id="header-avatar-text"
+        class="hidden w-16 h-16 rounded-2xl border border-gray-200 shadow-sm bg-emerald-700 text-white font-bold text-xl items-center justify-center">
+        AAB
+    </div>
+</div>
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">Welcome back, <span id="greeting-name">User</span>!</h1>
+            <p id="dashboard-subtitle"
+class="text-sm text-gray-500">
+
+Review your custody portfolio, wealth relationship and institutional activity.
+
+</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="bg-teal-50 px-4 py-2 rounded-2xl border border-teal-100">
+            <span class="block text-xs text-teal-600 font-medium">Relationship ID</span>
+            <span class="text-sm font-bold text-teal-800">021000021</span>
+          </div>
+          <div class="bg-blue-50 px-4 py-2 rounded-2xl border border-blue-100">
+            <span class="block text-xs text-blue-600 font-medium">Client Reference</span>
+            <span id="member-id-label" class="text-sm font-bold text-blue-800">88492015</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-teal-700 to-teal-900 text-white p-6 md:p-8 rounded-3xl shadow-lg relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+          <i class="fas fa-vault text-9xl transform translate-x-10 translate-y-10"></i>
+        </div>
+        <div class="flex justify-between items-start">
+          <div>
+            <h2 id="card-account-label" class="text-lg opacity-90 font-medium">Primary Custody Relationship</h2>
+            <div class="flex items-center gap-3 my-3">  <div id="balance" class="text-4xl md:text-5xl font-bold"> $0.00 </div>  <button onclick="toggleBalance()" class="text-white/80 hover:text-white">  <i id="balance-eye" class="fas fa-eye text-xl"></i>  </button>  </div>
+          </div>
+          <span class="bg-teal-600/50 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">Custody Active</span>
+        </div>
+        <div class="mt-6 pt-6 border-t border-white/20 flex justify-between text-sm opacity-80">
+          <div>Account Number: <span id="card-account-number" class="font-mono">OWB-0000000000</span></div>
+          <div>Assets Under Custody: <span id="card-available-balance">$0.00</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4 mb-6">
+
+<div class="flex items-center justify-between flex-wrap gap-3">
+
+<div>
+
+<h3 id="greeting" class="text-lg font-bold text-gray-900">
+Client Portfolio Overview
+</h3>
+
+<p id="welcome-time" class="text-sm text-gray-500 mt-1">
+
+Last login: Loading...
+
+</p>
+<p id="live-clock" class="text-xs text-gray-500 mt-1">
+    Loading date & time...
+</p>
+
+</div>
+
+<div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-2 rounded-full text-sm font-medium">
+
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+
+<span>Global custody services operational</span>
+
+</div>
+
+</div>
+
+</div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+
+<div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-gray-500 text-sm">
+
+Available Balance
+
+</p>
+
+<h3 id="summary-balance" class="text-xl font-bold text-gray-900 mt-2">
+
+$0.00
+
+</h3>
+
+</div>
+
+<div class="w-12 h-12 rounded-2xl bg-teal-100 flex items-center justify-center">
+
+<i class="fas fa-wallet text-teal-700 text-xl"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="monthly-income-card" class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-gray-500 text-sm">
+
+Monthly Income
+
+</p>
+
+<h3 class="text-xl font-bold text-green-600 mt-2">
+
++$48,900
+
+</h3>
+
+</div>
+
+<div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center">
+
+<i class="fas fa-arrow-trend-up text-green-700 text-xl"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="monthly-expenses-card" class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-gray-500 text-sm">
+
+Monthly Expenses
+
+</p>
+
+<h3 class="text-xl font-bold text-red-600 mt-2">
+
+-$11,240
+
+</h3>
+
+</div>
+
+<div class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center">
+
+<i class="fas fa-arrow-trend-down text-red-700 text-xl"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-gray-500 text-sm">
+
+Credit Status
+
+</p>
+
+<h3 class="text-xl font-bold text-blue-700 mt-2">
+
+Excellent
+
+</h3>
+
+</div>
+
+<div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+<i class="fas fa-shield-halved text-blue-700 text-xl"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <button onclick="openTransferWizard()" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3 font-medium text-gray-700 hover:bg-gray-50 transition">
+          <div class="p-2 bg-teal-100 text-teal-700 rounded-xl"><i class="fas fa-paper-plane"></i></div>
+          Transfer Funds
+        </button>
+        <button class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3 font-medium text-gray-700 hover:bg-gray-50 transition">
+          <div class="p-2 bg-blue-100 text-blue-700 rounded-xl"><i class="fas fa-money-check-alt"></i></div>
+          Deposit Check
+        </button>
+        <button class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3 font-medium text-gray-700 hover:bg-gray-50 transition">
+          <div class="p-2 bg-purple-100 text-purple-700 rounded-xl"><i class="fas fa-receipt"></i></div>
+          Pay Bills
+        </button>
+        <button onclick="toggleTransactionSort()" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3 font-medium text-gray-700 hover:bg-gray-50 transition">
+          <div class="p-2 bg-amber-100 text-amber-700 rounded-xl"><i class="fas fa-sort"></i></div>
+          Sort Transactions
+        </button>
+      </div>
+
+      <div id="transfer-panel-section" class="hidden bg-white p-6 rounded-3xl shadow-sm border border-gray-100 space-y-6">
+        <div class="flex justify-between items-center pb-4 border-b border-gray-100">
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Initiate Secure Transfer Pipeline</h3>
+            <p class="text-xs text-gray-500">Select target platform clearing mechanism</p>
+          </div>
+          <button onclick="closeTransferWizard()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times-circle text-xl"></i></button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button onclick="switchTransferForm('internal')" class="p-4 rounded-xl border border-teal-200 bg-teal-50 text-left hover:bg-teal-100/60 transition group">
+            <i class="fas fa-users text-teal-600 text-xl mb-2"></i>
+            <h4 class="font-bold text-sm text-gray-800">Omni-Wealth Client</h4>
+            <p class="text-xs text-gray-500 mt-1">Instant ledger updates to bank platform users.</p>
+          </button>
+          <button onclick="switchTransferForm('wire')" class="p-4 rounded-xl border border-blue-200 bg-blue-50 text-left hover:bg-blue-100/60 transition group">
+            <i class="fas fa-building-columns text-blue-600 text-xl mb-2"></i>
+            <h4 class="font-bold text-sm text-gray-800">External Wire Transfer</h4>
+            <p class="text-xs text-gray-500 mt-1">Domestic Federal Reserve or International SWIFT rails.</p>
+          </button>
+          <button onclick="switchTransferForm('business')" class="p-4 rounded-xl border border-purple-200 bg-purple-50 text-left hover:bg-purple-100/60 transition group">
+            <i class="fas fa-briefcase text-purple-600 text-xl mb-2"></i>
+            <h4 class="font-bold text-sm text-gray-800">Corporate &amp; Business Vendors</h4>
+            <p class="text-xs text-gray-500 mt-1">Automated commercial payroll or merchant accounts.</p>
+          </button>
+        </div>
+
+        <div id="transfer-form-container" class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hidden">
+          
+          <div id="standard-fields-wrapper" class="space-y-4 max-w-xl">
+            <h4 id="form-context-title" class="font-bold text-gray-800 text-base">Transfer Details</h4>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label id="label-field-one" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Beneficiary Identifier</label>
+                <input type="text" id="tx-input-one" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-teal-600 outline-none">
+              </div>
+              <div>
+                <label id="label-field-two" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Account / Route Number</label>
+                <input type="text" id="tx-input-two" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-teal-600 outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Allocation Amount ($)</label>
+                <input type="number" id="tx-input-amount" placeholder="0.00" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-teal-600 outline-none font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Transaction Memo / Narration</label>
+                <input type="text" id="tx-input-memo" placeholder="Optional" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-teal-600 outline-none">
+              </div>
+            </div>
+
+            <button onclick="executeTransferAction()" class="bg-gray-900 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-gray-800 transition">Execute Remittance Request</button>
+          </div>
+
+          <div id="wire-fields-wrapper" class="space-y-4 hidden">
+            <h4 class="font-bold text-gray-800 text-base border-b border-gray-200 pb-2 flex items-center gap-2">
+              <i class="fas fa-shield-alt text-blue-600"></i> Federal Wire Transit Ledger Configuration
+            </h4>
+            
+            <div class="bg-white p-4 rounded-xl border border-gray-200 space-y-3 shadow-xs">
+              <span class="text-xs font-bold text-blue-700 tracking-wide block uppercase">1. Receiving Financial Institution</span>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Beneficiary Bank Name</label>
+                  <input type="text" id="wire-bank-name" placeholder="e.g., Chase Bank, Barclays" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Routing Number / Sort Code</label>
+                  <input type="text" id="wire-routing" placeholder="9-digit ABA or Swift Bank Code" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">SWIFT / BIC Network Identifier</label>
+                  <input type="text" id="wire-swift" placeholder="8 or 11 Character Alpha-Numeric" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-gray-200 space-y-3 shadow-xs">
+              <span class="text-xs font-bold text-blue-700 tracking-wide block uppercase">2. Receiver Legal Entity Details</span>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Beneficiary Legal Name</label>
+                  <input type="text" id="wire-beneficiary-name" placeholder="Full Account Holder Name" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Account Number / IBAN</label>
+                  <input type="text" id="wire-account-num" placeholder="Target Account Allocation Index" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-500 mb-1">Beneficiary Physical Residential Address</label>
+                <input type="text" id="wire-beneficiary-address" placeholder="Street Address, City, State/Province, Country" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-gray-200 space-y-3 shadow-xs">
+              <span class="text-xs font-bold text-blue-700 tracking-wide block uppercase">3. Clearing Parameters &amp; Intermediary Paths</span>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Intermediary Bank (Optional)</label>
+                  <input type="text" id="wire-intermediary" placeholder="Name/Routing of transit bank" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Transfer Allocation Value ($)</label>
+                  <input type="number" id="wire-amount" placeholder="0.00" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs font-bold focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-500 mb-1">Purpose Code / Wire Memo</label>
+                  <input type="text" id="wire-memo" placeholder="Invoice #, Real Estate Settlement" class="w-full border border-gray-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-blue-500 outline-none">
+                </div>
+              </div>
+            </div>
+
+            <button onclick="executeTransferAction()" class="w-full md:w-auto bg-blue-700 text-white font-semibold text-xs px-8 py-3.5 rounded-xl hover:bg-blue-800 transition tracking-wide shadow-sm">
+              Authorize Wire Settlement Pipeline
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
+
+<h3 class="text-xl font-bold text-gray-800 mb-6">
+Recent Activity
+</h3>
+
+<div id="recent-activity" class="space-y-4">
+
+</div>
+
+</div>
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+<div>
+
+<h3 class="text-xl font-bold text-gray-800">
+Transaction Ledger
+</h3>
+
+<p class="text-xs text-gray-500 mt-1">
+Search and review your account activity.
+</p>
+
+</div>
+
+<div class="relative">
+
+<i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+
+<input
+id="transaction-search"
+type="text"
+placeholder="Search transactions..."
+oninput="filterTransactions()"
+class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full focus:outline-none focus:ring-2 focus:ring-teal-600">
+
+</div>
+
+</div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-gray-500 text-xs font-bold uppercase border-b border-gray-100">
+                <th class="p-4">Date</th>
+                <th class="p-4">Type</th>
+                <th class="p-4">Sender</th>
+                <th class="p-4">Receiver / Account</th>
+                <th class="p-4">Narration</th>
+                <th class="p-4 text-right">Amount</th>
+                <th class="p-4 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody id="transaction-rows" class="text-sm divide-y divide-gray-100 text-gray-600">
+              </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 p-4 rounded-2xl border border-gray-200 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-2 shadow-inner">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <p>Security Alert: Your account is monitored. Last successful authentication verified. <span id="last-signin-timestamp" class="font-semibold text-gray-700">Loading timestamp...</span></p>
+        </div>
+        <div class="bg-gray-200 px-3 py-1 rounded-lg text-gray-600 font-mono scale-95 origin-right">
+          IP Access Code: <span class="font-bold text-teal-800">198.162.40.12</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="login-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative">
+      <button onclick="hideLoginModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 text-xl">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="text-center mb-6">
+        <h3 class="text-xl font-bold text-gray-800">Login</h3>
+        <p class="text-sm text-gray-500 mt-1">Provide your details to securely sign into online services.</p>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">User Identification Code</label>
+          <div class="relative">
+            <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
+            <input type="text" id="username" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="Enter identifier">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Secure Account Password</label>
+          <div class="relative">
+            <i class="fas fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+            <input type="password" id="password" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="••••••••">
+          </div>
+        </div>
+        <button onclick="performLogin()" class="w-full bg-teal-700 text-white p-3.5 rounded-xl font-semibold shadow-md hover:bg-teal-800 transition mt-2">Access Portal</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="custom-alert-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-[200] p-4 animate-fade-in">
+    <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center">
+      <div class="w-12 h-12 bg-red-100 text-red-600 flex items-center justify-center rounded-full mx-auto mb-4 text-xl">
+        <i class="fas fa-circle-exclamation"></i>
+      </div>
+      <p id="custom-alert-text" class="text-sm font-medium text-gray-700 leading-relaxed mb-6"></p>
+      <button onclick="closeCustomAlert()" class="w-full bg-gray-900 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition">OK</button>
+    </div>
+  </div>
+
+  <div id="loading-gateway" class="hidden fixed inset-0 bg-slate-900 flex flex-col items-center justify-center z-[100] text-white p-6">
+    <div class="flex flex-col items-center max-w-xs text-center space-y-6">
+      <div class="relative flex items-center justify-center">
+        <div class="w-16 h-16 border-4 border-teal-500/20 border-t-teal-500 rounded-full animate-spin"></div>
+        <i class="fas fa-shield-halved absolute text-xl text-teal-400 animate-pulse"></i>
+      </div>
+      <div>
+        <h4 class="text-xl font-bold tracking-wide text-gray-100">Establishing Session</h4>
+        <p id="loading-status-text" class="text-sm text-teal-400 font-mono mt-2 min-h-[20px]">Verifying credentials...</p>
+      </div>
+      <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+        <div class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full w-0 rounded-full transition-all duration-1000 ease-out" id="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const accountDatabase = {
+      "Gilbert": {
+        fullName: "Gilbert",
+        memberId: "88492015",
+        accountNum: "OWB-2149083675",
+        displayNum: "Core Checking (...83675)",
+        balance: "$328,545.00",
+        avatar: "https://res.cloudinary.com/daf2dvttg/image/upload/v1782756918/IMG_8538_uunp7c.png",
+        ledger: [
+          { date: "2025-08-16", type: "CREDIT", sender: "Alaric Monroe", receiver: "Redwood Capital Holdings", narration: "OWB/4185729063/58142/CREDIT", amount: "+$27,650.00", status: "SUCCESSFUL" },
+          { date: "2025-08-30", type: "DEBIT", sender: "Granite Ridge Ventures", receiver: "861294750318 (Elena Voss)", narration: "OWB/2051847396/73481/DEBIT", amount: "-$8,900.00", status: "SUCCESSFUL" },
+          { date: "2025-09-14", type: "CREDIT", sender: "Tobias Wren", receiver: "Silvergate Commerce LLC", narration: "OWB/7461930582/29174/CREDIT", amount: "+$58,400.00", status: "SUCCESSFUL" },
+          { date: "2025-09-27", type: "DEBIT", sender: "Northpoint Assets Group", receiver: "490176382554 (Caleb Mercer)", narration: "OWB/6139057284/86721/DEBIT", amount: "-$14,500.00", status: "SUCCESSFUL" },
+          { date: "2025-10-09", type: "CREDIT", sender: "Daphne Sinclair", receiver: "Aurora Financial Trust", narration: "OWB/1589046273/42058/CREDIT", amount: "+$91,250.00", status: "SUCCESSFUL" },
+          { date: "2025-10-25", type: "DEBIT", sender: "Crestline Equity Partners", receiver: "728540196233 (Miles Donovan)", narration: "OWB/9725168403/10836/DEBIT", amount: "-$6,750.00", status: "SUCCESSFUL" },
+          { date: "2025-11-06", type: "CREDIT", sender: "Julian Carrington", receiver: "Horizon Wealth Advisors", narration: "OWB/2846175309/69542/CREDIT", amount: "+$124,800.00", status: "SUCCESSFUL" },
+          { date: "2025-11-22", type: "DEBIT", sender: "Brookstone Investments", receiver: "315769248401 (Sienna Drake)", narration: "OWB/8471502936/27395/DEBIT", amount: "-$21,400.00", status: "SUCCESSFUL" },
+          { date: "2025-12-13", type: "CREDIT", sender: "Veronica Hale", receiver: "Summit Financial Network", narration: "OWB/6902431875/54863/CREDIT", amount: "+$73,600.00", status: "SUCCESSFUL" },
+          { date: "2026-01-08", type: "DEBIT", sender: "Oakmont Resource Group", receiver: "582910467325 (Isaac Holloway)", narration: "OWB/3748061952/81207/DEBIT", amount: "-$17,250.00", status: "SUCCESSFUL" },
+          { date: "2026-01-24", type: "CREDIT", sender: "Xavier Lockwood", receiver: "Meridian Capital Exchange", narration: "OWB/9257416803/36784/CREDIT", amount: "+$136,900.00", status: "SUCCESSFUL" },
+          { date: "2026-02-10", type: "DEBIT", sender: "Blackwater Logistics Ltd", receiver: "104938275661 (Naomi Pierce)", narration: "OWB/4817593026/95041/DEBIT", amount: "-$12,300.00", status: "SUCCESSFUL" },
+          { date: "2026-02-26", type: "CREDIT", sender: "Celeste Whitaker", receiver: "Vanguard Settlement Trust", narration: "OWB/5372109846/68529/CREDIT", amount: "+$49,850.00", status: "SUCCESSFUL" },
+          { date: "2026-03-12", type: "CREDIT", sender: "Everett Kingsley", receiver: "Sterling Asset Management", narration: "OWB/7618420953/15473/CREDIT", amount: "+$102,700.00", status: "SUCCESSFUL" },
+          { date: "2026-03-28", type: "DEBIT", sender: "Redwood Merchant Bank", receiver: "693825471209 (Landon Price)", narration: "OWB/2401985736/74625/DEBIT", amount: "-$38,950.00", status: "SUCCESSFUL" },
+          { date: "2026-04-08", type: "CREDIT", sender: "Bianca Fairchild", receiver: "Atlas International Finance", narration: "OWB/8154062793/30984/CREDIT", amount: "+$219,000.00", status: "SUCCESSFUL" },
+          { date: "2026-04-21", type: "DEBIT", sender: "Ironcrest Holdings PLC", receiver: "270514839682 (Ronan Ellis)", narration: "OWB/5948207163/11850/DEBIT", amount: "-$64,800.00", status: "SUCCESSFUL" },
+          { date: "2026-05-05", type: "CREDIT", sender: "Sebastian Vale", receiver: "Pinnacle Treasury Services", narration: "OWB/3629847510/97362/CREDIT", amount: "+$168,300.00", status: "SUCCESSFUL" },
+          { date: "2026-05-18", type: "DEBIT", sender: "Bluehaven Commercial Group", receiver: "951376024815 (Harper Quinn)", narration: "OWB/7036159284/64097/DEBIT", amount: "-$57,100.00", status: "SUCCESSFUL" },
+          { date: "2026-06-02", type: "CREDIT", sender: "Arabella Frost", receiver: "Legacy Global Settlements", narration: "OWB/1284756093/48271/CREDIT", amount: "+$83,550.00", status: "SUCCESSFUL" },
+          { date: "2026-06-13", type: "DEBIT", sender: "Eastgate Treasury Corp", receiver: "486291753048 (Dominic Reeve)", narration: "OWB/8463721950/73164/DEBIT", amount: "-$19,600.00", status: "FAILED" },
+          { date: "2026-06-20", type: "CREDIT", sender: "Quentin Blackwood", receiver: "Sovereign Funding Associates", narration: "OWB/5107482963/26418/CREDIT", amount: "+$45,900.00", status: "SUCCESSFUL" }
+        ]
+      },
+      "Martha": {
+        fullName: "Martha Bazinamee",
+        memberId: "74029163",
+        accountNum: "OWB-6396904012",
+        displayNum: "Core Checking (...04012)",
+        balance: "$341,909.73",
+        avatar: "https://res.cloudinary.com/daf2dvttg/image/upload/v1782090049/2A529708-7F50-4CDC-A5F5-5A06B603C97E_lafkov.png",
+        ledger: [
+          { date: "2025-10-11", type: "DEBIT", sender: "Baziname", receiver: "797567383910 (Mitchel Dressler)", narration: "OWB/4306404587/96928/DEBIT", amount: "-$8,500.00", status: "SUCCESSFUL" },
+          { date: "2025-10-18", type: "CREDIT", sender: "Ron Admars", receiver: "Bazinamee", narration: "OWB/7565349914/89476/CREDIT", amount: "+$3,875.00", status: "SUCCESSFUL" },
+          { date: "2025-12-30", type: "DEBIT", sender: "Baziname", receiver: "797567383910 (Mitchel Dressler)", narration: "OWB/4306404587/96928/DEBIT", amount: "-$8,500.00", status: "SUCCESSFUL" },
+          { date: "2026-02-01", type: "DEBIT", sender: "Baziname", receiver: "453735375607 (Simon Rogers)", narration: "OWB/6302687115/17739/DEBIT", amount: "-$10,000.00", status: "SUCCESSFUL" },
+          { date: "2026-03-01", type: "DEBIT", sender: "Baziname", receiver: "199565750215 (Joe Blake)", narration: "OWB/9350310556/19214/DEBIT", amount: "-$7,000.00", status: "SUCCESSFUL" },
+          { date: "2026-03-10", type: "CREDIT", sender: "Baziname", receiver: "Bazinamee", narration: "OWB/6007351093/33339/CREDIT", amount: "+$32,544.00", status: "SUCCESSFUL" },
+          { date: "2026-04-26", type: "CREDIT", sender: "Jennifer Ballack", receiver: "Bazinamee", narration: "OWB/8166087099/99136/CREDIT", amount: "+$100,000.00", status: "SUCCESSFUL" },
+          { date: "2026-05-03", type: "DEBIT", sender: "Baziname", receiver: "590427535247 (Pierre Maldin)", narration: "OWB/1144591552/25464/DEBIT", amount: "-$65,000.00", status: "SUCCESSFUL" },
+          { date: "2026-05-11", type: "CREDIT", sender: "Fredrick Heisenberg", receiver: "Bazinamee", narration: "OWB/7250935611/50299/CREDIT", amount: "+$307,990.00", status: "SUCCESSFUL" },
+          { date: "2026-06-01", type: "CREDIT", sender: "Victoria Secret Plus Size Models", receiver: "Bazinamee", narration: "OWB/4978638117/89329/CREDIT", amount: "+$184,999.99", status: "FAILED" }
+        ]
+      },
+      "Anjuman": {
+  fullName: "ANJUMAN A BEGUM",
+  memberId: "58140726",
+  accountNum: "OWB-8743159028",
+  displayNum: "Core Checking (...59028)",
+  balance: "$634,746.26",
+  avatar: "AAB",
+  ledger: [
+     { date: "2023-03-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8472619035/39184/CREDIT", amount: "+$720.00", status: "SUCCESSFUL" },
+
+  { date: "2023-04-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/1950837426/84725/CREDIT", amount: "+$810.00", status: "SUCCESSFUL" },
+
+  { date: "2023-05-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/6637102948/10498/CREDIT", amount: "+$911.25", status: "SUCCESSFUL" },
+
+  { date: "2023-06-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/2049573816/77841/CREDIT", amount: "+$1,025.16", status: "SUCCESSFUL" },
+
+  { date: "2023-07-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/9815406273/56103/CREDIT", amount: "+$1,153.30", status: "SUCCESSFUL" },
+
+  { date: "2023-08-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/5372948160/98214/CREDIT", amount: "+$1,297.46", status: "SUCCESSFUL" },
+
+  { date: "2023-09-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/7264019583/31766/CREDIT", amount: "+$1,459.65", status: "SUCCESSFUL" },
+
+  { date: "2023-10-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/3108647529/49580/CREDIT", amount: "+$1,642.10", status: "SUCCESSFUL" },
+
+  { date: "2023-11-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8921736405/26417/CREDIT", amount: "+$1,847.36", status: "SUCCESSFUL" },
+
+  { date: "2023-12-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/4586017392/81029/CREDIT", amount: "+$2,078.29", status: "SUCCESSFUL" },
+
+  { date: "2024-01-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/1749283056/60283/CREDIT", amount: "+$2,338.07", status: "SUCCESSFUL" },
+
+  { date: "2024-02-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/7605139842/15591/CREDIT", amount: "+$2,630.33", status: "SUCCESSFUL" },
+
+  { date: "2024-03-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/2358064179/98462/CREDIT", amount: "+$2,959.12", status: "SUCCESSFUL" },
+
+  { date: "2024-04-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/6091483275/42077/CREDIT", amount: "+$3,329.01", status: "SUCCESSFUL" },
+
+  { date: "2024-05-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8437051926/71938/CREDIT", amount: "+$3,745.14", status: "SUCCESSFUL" },
+
+  { date: "2024-06-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/9518264073/53810/CREDIT", amount: "+$4,213.28", status: "SUCCESSFUL" },
+
+  { date: "2024-07-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/2867190453/68195/CREDIT", amount: "+$4,739.94", status: "SUCCESSFUL" },
+
+  { date: "2024-08-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/4735829160/24716/CREDIT", amount: "+$5,332.43", status: "SUCCESSFUL" },
+
+  { date: "2024-09-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8124095736/90541/CREDIT", amount: "+$5,998.99", status: "SUCCESSFUL" },
+
+  { date: "2024-10-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/1647309852/33084/CREDIT", amount: "+$6,748.86", status: "SUCCESSFUL" },
+
+  { date: "2024-11-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/6902583147/77452/CREDIT", amount: "+$7,592.47", status: "SUCCESSFUL" },
+
+  { date: "2024-12-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/3578041629/19267/CREDIT", amount: "+$8,541.53", status: "SUCCESSFUL" },
+
+  { date: "2025-01-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/9285416037/51843/CREDIT", amount: "+$9,609.22", status: "SUCCESSFUL" },
+
+  { date: "2025-02-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/4019672853/86120/CREDIT", amount: "+$10,810.37", status: "SUCCESSFUL" },
+
+  { date: "2025-03-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/7851326409/27598/CREDIT", amount: "+$12,161.66", status: "SUCCESSFUL" },
+
+  { date: "2025-04-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/2138745096/64931/CREDIT", amount: "+$13,681.87", status: "SUCCESSFUL" },
+
+  { date: "2025-05-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/5642097381/48657/CREDIT", amount: "+$15,392.11", status: "SUCCESSFUL" },
+
+  { date: "2025-06-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8396512470/91362/CREDIT", amount: "+$17,316.12", status: "SUCCESSFUL" },
+
+  { date: "2025-07-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/1473065982/25804/CREDIT", amount: "+$19,480.64", status: "SUCCESSFUL" },
+
+  { date: "2025-08-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/6708143259/74016/CREDIT", amount: "+$21,915.72", status: "SUCCESSFUL" },
+
+  { date: "2025-09-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/9035472816/18579/CREDIT", amount: "+$24,655.18", status: "SUCCESSFUL" },
+
+  { date: "2025-10-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/5187294603/69720/CREDIT", amount: "+$27,737.08", status: "SUCCESSFUL" },
+
+  { date: "2025-11-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/2648059137/84311/CREDIT", amount: "+$31,204.21", status: "SUCCESSFUL" },
+
+  { date: "2025-12-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/7319460285/51298/CREDIT", amount: "+$35,104.74", status: "SUCCESSFUL" },
+
+  { date: "2026-01-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/8562034719/36405/CREDIT", amount: "+$39,492.83", status: "SUCCESSFUL" },
+
+  { date: "2026-02-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/4927816503/92674/CREDIT", amount: "+$44,429.43", status: "SUCCESSFUL" },
+
+  { date: "2026-03-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/6193058742/40739/CREDIT", amount: "+$49,983.11", status: "SUCCESSFUL" },
+
+  { date: "2026-04-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/3726905418/15862/CREDIT", amount: "+$56,231.00", status: "SUCCESSFUL" },
+
+  { date: "2026-05-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/9482163075/78154/CREDIT", amount: "+$63,259.88", status: "SUCCESSFUL" },
+
+  { date: "2026-06-01", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ANJUMAN A BEGUM", narration: "OWB/5814379620/54387/CREDIT", amount: "+$71,167.36", status: "SUCCESSFUL" }
+
+]
+},
+"ESARDEEN_JAIKARAN": {
+    fullName: "Esardeen Jaikaran",
+    memberId: "58419372",
+    accountNum: "OWB-4827519360",
+    displayNum: "Core Savings (...19360)",
+    balance: "$397,545.88",
+    avatar: "EJ",
+
+    ledger: [
+		{ date: "2023-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AAPL-DIV/39184-A/84726/CREDIT", amount: "+$720.00", status: "SUCCESSFUL" },
+{ date: "2023-04-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "MSFT-DIV/84725-B/19508/CREDIT", amount: "+$810.00", status: "SUCCESSFUL" },
+{ date: "2023-05-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "JPM-DIV/10498-C/66371/CREDIT", amount: "+$911.25", status: "SUCCESSFUL" },
+{ date: "2023-06-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AMZN-DIV/77841-D/20495/CREDIT", amount: "+$1,025.16", status: "SUCCESSFUL" },
+{ date: "2023-08-05", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "NVDA-DIV/56103-E/98154/CREDIT", amount: "+$1,153.30", status: "SUCCESSFUL" },
+{ date: "2023-09-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "GOOGL-DIV/98214-F/53729/CREDIT", amount: "+$940.50", status: "SUCCESSFUL" },
+{ date: "2023-10-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "META-DIV/31766-G/72640/CREDIT", amount: "+$1,080.20", status: "SUCCESSFUL" },
+{ date: "2023-11-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "TSLA-DIV/49580-H/31086/CREDIT", amount: "+$890.45", status: "SUCCESSFUL" },
+{ date: "2023-12-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "V-DIV/26417-I/89217/CREDIT", amount: "+$1,210.60", status: "SUCCESSFUL" },
+{ date: "2024-01-22", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "JNJ-DIV/81029-J/45860/CREDIT", amount: "+$1,450.00", status: "SUCCESSFUL" },
+{ date: "2024-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "WMT-DIV/60283-K/17492/CREDIT", amount: "+$1,320.15", status: "SUCCESSFUL" },
+{ date: "2024-04-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PG-DIV/15591-L/76051/CREDIT", amount: "+$1,560.80", status: "SUCCESSFUL" },
+{ date: "2024-05-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "MA-DIV/98462-M/23580/CREDIT", amount: "+$1,100.25", status: "SUCCESSFUL" },
+{ date: "2024-06-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "HD-DIV/42077-N/60914/CREDIT", amount: "+$1,780.90", status: "SUCCESSFUL" },
+{ date: "2024-08-05", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "DIS-DIV/71938-O/84370/CREDIT", amount: "+$1,950.40", status: "SUCCESSFUL" },
+{ date: "2024-09-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "NFLX-DIV/53810-P/95182/CREDIT", amount: "+$1,640.50", status: "SUCCESSFUL" },
+{ date: "2024-10-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "ADBE-DIV/68195-Q/28671/CREDIT", amount: "+$1,820.75", status: "SUCCESSFUL" },
+{ date: "2024-11-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PYPL-DIV/24716-R/47358/CREDIT", amount: "+$1,490.30", status: "SUCCESSFUL" },
+{ date: "2024-12-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "CSCO-DIV/90541-S/81240/CREDIT", amount: "+$2,100.60", status: "SUCCESSFUL" },
+{ date: "2025-01-22", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "INTC-DIV/33084-T/16473/CREDIT", amount: "+$2,550.80", status: "SUCCESSFUL" },
+{ date: "2025-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "CMCSA-DIV/77452-U/69025/CREDIT", amount: "+$2,210.40", status: "SUCCESSFUL" },
+{ date: "2025-04-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PEP-DIV/19267-V/35780/CREDIT", amount: "+$2,450.15", status: "SUCCESSFUL" },
+{ date: "2025-05-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "KO-DIV/51843-W/92854/CREDIT", amount: "+$1,980.90", status: "SUCCESSFUL" },
+{ date: "2025-06-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PFE-DIV/86120-X/40196/CREDIT", amount: "+$2,820.60", status: "SUCCESSFUL" },
+{ date: "2025-08-05", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "XOM-DIV/27598-Y/78513/CREDIT", amount: "+$3,450.40", status: "SUCCESSFUL" },
+{ date: "2025-09-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AAPL-DIV/64931-A/21387/CREDIT", amount: "+$2,910.50", status: "SUCCESSFUL" },
+{ date: "2025-10-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "MSFT-DIV/48657-B/56420/CREDIT", amount: "+$3,120.75", status: "SUCCESSFUL" },
+{ date: "2025-11-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "JPM-DIV/91362-C/83965/CREDIT", amount: "+$2,640.30", status: "SUCCESSFUL" },
+{ date: "2025-12-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AMZN-DIV/25804-D/14730/CREDIT", amount: "+$3,850.60", status: "SUCCESSFUL" },
+{ date: "2026-01-22", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "NVDA-DIV/74016-E/67081/CREDIT", amount: "+$4,520.80", status: "SUCCESSFUL" },
+{ date: "2026-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "GOOGL-DIV/18579-F/90354/CREDIT", amount: "+$3,980.40", status: "SUCCESSFUL" },
+{ date: "2026-04-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "META-DIV/69720-G/51872/CREDIT", amount: "+$4,210.15", status: "SUCCESSFUL" },
+{ date: "2026-05-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "TSLA-DIV/84311-H/26480/CREDIT", amount: "+$3,750.90", status: "SUCCESSFUL" },
+{ date: "2026-06-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "V-DIV/51298-I/73194/CREDIT", amount: "+$5,120.60", status: "SUCCESSFUL" },
+{ date: "2026-06-25", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "JNJ-DIV/36405-J/85620/CREDIT", amount: "+$6,250.40", status: "SUCCESSFUL" },
+{ date: "2026-06-26", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "WMT-DIV/92674-K/49278/CREDIT", amount: "+$5,410.50", status: "SUCCESSFUL" },
+{ date: "2026-06-27", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PG-DIV/40739-L/61930/CREDIT", amount: "+$5,820.75", status: "SUCCESSFUL" },
+{ date: "2026-06-28", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "MA-DIV/15862-M/37269/CREDIT", amount: "+$5,150.30", status: "SUCCESSFUL" },
+{ date: "2026-06-29", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "HD-DIV/78154-N/94821/CREDIT", amount: "+$7,180.60", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "DIS-DIV/54387-O/58143/CREDIT", amount: "+$8,990.80", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "NFLX-DIV/99281-P/84726/CREDIT", amount: "+$45,210.15", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "ADBE-DIV/22091-Q/10492/CREDIT", amount: "+$50,000.00", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PYPL-DIV/44927-R/88273/CREDIT", amount: "+$52,127.00", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "CSCO-DIV/11837-S/55729/CREDIT", amount: "+$48,162.80", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "INTC-DIV/66392-T/29485/CREDIT", amount: "+$35,052.80", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "CMCSA-DIV/33746-U/71625/CREDIT", amount: "+$30,927.80", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PEP-DIV/27394-V/62947/CREDIT", amount: "+$15,063.28", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "KO-DIV/75018-W/38510/CREDIT", amount: "+$10,071.19", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "PFE-DIV/39462-X/74203/CREDIT", amount: "+$8,330.09", status: "SUCCESSFUL" },
+{ date: "2026-06-30", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "XOM-DIV/61829-Y/19652/CREDIT", amount: "+$4,896.35", status: "SUCCESSFUL" }
+       
+    ]
+},
+"FRANCISCO": {
+    fullName: "FRANCISCO HUNGRIA",
+    memberId: "86317524",
+    accountNum: "OWB-9474187291",
+    displayNum: "Private Wealth Custody (...87291)",
+    balance: "$418,321.05",
+    avatar: "FH",
+
+    ledger: [
+{
+    date: "2023-03-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Apple Inc. | Ref: 39184-A-84726",
+    amount: "+$5,254.44",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-04-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Microsoft Corporation | Ref: 84725-B-19508",
+    amount: "+$5,911.43",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-05-20",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – JPMorgan Chase & Co. | Ref: 10498-C-66371",
+    amount: "+$6,650.08",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-06-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Amazon Inc. | Ref: 77841-D-20495",
+    amount: "+$7,481.66",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-07-01",
+    type: "DEBIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Quarterly Custody Service Fee | Ref: FEE-JUL-23",
+    amount: "-$50.00",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-08-05",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – NVIDIA Corporation | Ref: 56103-E-98154",
+    amount: "+$8,416.58",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-09-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Alphabet Inc. | Ref: 98214-F-53729",
+    amount: "+$6,863.61",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2023-10-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Meta Platforms Inc. | Ref: 31766-G-72640",
+    amount: "+$7,882.94",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-01-02",
+    type: "DEBIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "International Wire Processing Fee | Ref: FEE-W-882",
+    amount: "-$35.00",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-01-22",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Tesla Inc. | Ref: 81029-H-45860",
+    amount: "+$10,583.52",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-03-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Visa Inc. | Ref: 60283-I-17492",
+    amount: "+$9,635.86",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-04-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Johnson & Johnson | Ref: 15591-J-76051",
+    amount: "+$11,391.36",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-05-20",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Walmart Inc. | Ref: 98462-K-23580",
+    amount: "+$8,025.67",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-07-01",
+    type: "DEBIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Annual Custody Maintenance Fee | Ref: FEE-MNT-24",
+    amount: "-$150.00",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-08-05",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Procter & Gamble | Ref: 71938-L-84370",
+    amount: "+$14,224.71",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-09-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Mastercard Inc. | Ref: 53810-M-95182",
+    amount: "+$11,964.49",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2024-10-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Home Depot Inc. | Ref: 68195-N-28671",
+    amount: "+$13,278.39",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-01-05",
+    type: "DEBIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "International Wire Processing Fee | Ref: FEE-W-991",
+    amount: "-$35.00",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-01-22",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Walt Disney Company | Ref: 33084-O-16473",
+    amount: "+$18,600.47",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-03-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Netflix Inc. | Ref: 77452-P-69025",
+    amount: "+$16,115.92",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-04-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Adobe Inc. | Ref: 19267-Q-35780",
+    amount: "+$17,863.87",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-05-20",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – PayPal Holdings Inc. | Ref: 51843-R-92854",
+    amount: "+$14,430.91",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-07-01",
+    type: "DEBIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Annual Portfolio Administration Fee | Ref: FEE-ANN-25",
+    amount: "-$250.00",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-08-05",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Cisco Systems Inc. | Ref: 27598-S-78513",
+    amount: "+$25,123.77",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-09-15",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Intel Corporation | Ref: 64931-T-21387",
+    amount: "+$21,194.87",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2025-10-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Comcast Corporation | Ref: 48657-U-56420",
+    amount: "+$22,727.48",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2026-01-22",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – PepsiCo Inc. | Ref: 74016-V-67081",
+    amount: "+$32,922.55",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2026-04-12",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Coca-Cola Company | Ref: 69720-W-51872",
+    amount: "+$30,661.09",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2026-06-30",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Pfizer Inc. | Ref: 39462-X-74203",
+    amount: "+$60,678.43",
+    status: "SUCCESSFUL"
+},
+{
+    date: "2026-06-30",
+    type: "CREDIT",
+    sender: "Omni-Wealth Securities Custody",
+    receiver: "FRANCISCO HUNGRIA",
+    narration: "Dividend Settlement – Exxon Mobil Corporation | Ref: 61829-Y-19652",
+    amount: "+$35,699.35",
+    status: "SUCCESSFUL"
+}
+]
+},
+
+    };
+
+    let activeUserSession = null;
+    let sortDescending = true;
+    let selectedTransferType = 'internal';
+    let loginTime = null;
+    let balanceVisible = true;
+
+    function triggerCustomAlert(message) {
+      document.getElementById('custom-alert-text').innerText = message;
+      document.getElementById('custom-alert-modal').classList.remove('hidden');
+    }
+
+    function openTransferWizard() {
+      document.getElementById('transfer-panel-section').classList.remove('hidden');
+      switchTransferForm('internal');
+    }
+
+    function closeTransferWizard() {
+      document.getElementById('transfer-panel-section').classList.add('hidden');
+    }
+
+    function switchTransferForm(type) {
+      selectedTransferType = type;
+      document.getElementById('transfer-form-container').classList.remove('hidden');
+
+      const standardWrapper = document.getElementById('standard-fields-wrapper');
+      const wireWrapper = document.getElementById('wire-fields-wrapper');
+
+      document.getElementById('tx-input-one').value = '';
+      document.getElementById('tx-input-two').value = '';
+      document.getElementById('tx-input-amount').value = '';
+      document.getElementById('tx-input-memo').value = '';
+
+      if (type === 'wire') {
+        standardWrapper.classList.add('hidden');
+        wireWrapper.classList.remove('hidden');
+      } else {
+        wireWrapper.classList.add('hidden');
+        standardWrapper.classList.remove('hidden');
+
+        const title = document.getElementById('form-context-title');
+        const labelOne = document.getElementById('label-field-one');
+        const labelTwo = document.getElementById('label-field-two');
+
+        if (type === 'internal') {
+          title.innerText = "Internal Member Settlement Profile";
+          labelOne.innerText = "Omni-Wealth Client Name / ID";
+          labelTwo.innerText = "Target Member Account Index";
+        } else if (type === 'business') {
+          title.innerText = "Commercial Business Clearing Request";
+          labelOne.innerText = "Registered Corporate / Vendor Title";
+          labelTwo.innerText = "Commercial EIN / Corporate Account Code";
+        }
+      }
+    }
+
+    function executeTransferAction() {
+    triggerCustomAlert("Please contact your private OWB representative.\n\n+1 (365) 480-6368");
+}
+
+    function renderActiveDashboard() {
+      const data = accountDatabase[activeUserSession];
+      balanceVisible = true;
+      if (!data) return;
+
+      document.getElementById('greeting-name').innerText = data.fullName;
+      document.getElementById('member-id-label').innerText = data.memberId;
+      
+      
+      const navAvatar = document.getElementById("nav-avatar");
+const headerAvatar = document.getElementById("header-avatar");
+
+const navText = document.getElementById("nav-avatar-text");
+const headerText = document.getElementById("header-avatar-text");
+
+if (
+    activeUserSession === "Anjuman" ||
+    activeUserSession === "ESARDEEN_JAIKARAN" ||
+    activeUserSession === "FRANCISCO"
+) {
+    navAvatar.style.display = "none";
+    headerAvatar.style.display = "none";
+
+    navText.classList.remove("hidden");
+    navText.classList.add("flex");
+
+    headerText.classList.remove("hidden");
+    headerText.classList.add("flex");
+		
+		navText.innerText = data.avatar;
+headerText.innerText = data.avatar;
+
+} else {
+
+    navAvatar.style.display = "block";
+    headerAvatar.style.display = "block";
+
+    navAvatar.src = data.avatar;
+    headerAvatar.src = data.avatar;
+
+    navText.classList.remove("flex");
+    navText.classList.add("hidden");
+
+    headerText.classList.remove("flex");
+    headerText.classList.add("hidden");
+}
+
+      document.getElementById('balance').innerText = data.balance;
+      document.getElementById('card-account-label').innerText = data.displayNum;
+      document.getElementById('card-account-number').innerText = data.accountNum;
+      document.getElementById('card-available-balance').innerText = data.balance;
+document.getElementById('summary-balance').innerText = data.balance;
+document.getElementById("balance-eye").className = "fas fa-eye text-xl";
+const incomeCard = document.getElementById("monthly-income-card");
+const expensesCard = document.getElementById("monthly-expenses-card");
+
+if (
+    activeUserSession === "Anjuman" ||
+    activeUserSession === "ESARDEEN_JAIKARAN" ||
+    activeUserSession === "FRANCISCO"
+) {
+    incomeCard.style.display = "none";
+    expensesCard.style.display = "none";
+} else {
+    incomeCard.style.display = "";
+    expensesCard.style.display = "";
+}
+      renderTableRows(data.ledger); renderRecentActivity(data.ledger);
+    }
+
+function toggleBalance() {
+    balanceVisible = !balanceVisible;
+
+    const data = accountDatabase[activeUserSession];
+    if (!data) return;
+
+    document.getElementById("balance").innerText =
+        balanceVisible ? data.balance : "••••••••";
+
+    document.getElementById("card-available-balance").innerText =
+        balanceVisible ? data.balance : "••••••••";
+
+    document.getElementById("summary-balance").innerText =
+        balanceVisible ? data.balance : "••••••••";
+
+    document.getElementById("balance-eye").className =
+        balanceVisible
+            ? "fas fa-eye text-xl"
+            : "fas fa-eye-slash text-xl";
+}
+
+    function renderTableRows(ledgerArray) {
+      const container = document.getElementById('transaction-rows');
+      container.innerHTML = '';
+      
+      ledgerArray.forEach((tx, index) => {
+        const amtClass = tx.amount.includes('+') ? 'credit' : 'debit';
+        let statusClass = 'bg-green-100 text-green-700';
+        if (tx.status === 'FAILED') statusClass = 'bg-red-100 text-red-700';
+        
+        const row = `
+          <tr id="tx-${index}"
+onclick="toggleTransaction(${index})" class="odd:bg-white even:bg-slate-50 hover:bg-teal-50 transition border-b border-gray-100 cursor-pointer">
+            <td class="p-4 font-mono text-xs whitespace-nowrap">${tx.date}</td>
+            <td class="p-4">
+
+${tx.type === 'CREDIT'
+
+? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
+
+<i class="fas fa-arrow-down"></i>
+
+CREDIT
+
+</span>`
+
+: `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-semibold">
+
+<i class="fas fa-arrow-up"></i>
+
+DEBIT
+
+</span>`}
+
+</td>
+            <td class="p-4 whitespace-nowrap font-medium text-gray-700">${tx.sender}</td>
+            <td class="p-4 whitespace-nowrap text-xs text-gray-500">${tx.receiver}</td>
+            <td class="p-4 text-xs font-mono max-w-xs truncate">${tx.narration}</td>
+            <td class="p-4 text-right">  ${tx.amount.includes('+')  ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 font-semibold">  <i class="fas fa-plus-circle text-xs"></i>  ${tx.amount.replace("+", "").replace("-", "")}  </span>`  : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-700 font-semibold">  <i class="fas fa-minus-circle text-xs"></i>  ${tx.amount.replace("+", "").replace("-", "")}  </span>`}  </td>
+            <td class="p-4 text-center">
+
+    <div class="flex items-center justify-center gap-2">
+
+        <span class="px-2 py-1 rounded-full text-xs font-medium ${statusClass}">
+            ${tx.status}
+        </span>
+
+        <i id="arrow-${index}" class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-300"></i>
+
+    </div>
+
+</td>
+          </tr>
+          <tr id="details-${index}" class="hidden bg-slate-50">
+
+<td colspan="7" class="px-6 py-4">
+
+<div id="receipt-${index}" class="overflow-hidden transition-all duration-300">
+
+<div class="rounded-xl border border-gray-200 bg-white p-4 space-y-2">
+
+<div class="flex justify-between">
+
+<span class="text-gray-500">Sender</span>
+
+<strong>${tx.sender}</strong>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-gray-500">Receiver</span>
+
+<strong>${tx.receiver}</strong>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-gray-500">Narration</span>
+
+<strong>${tx.narration}</strong>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-gray-500">Amount</span>
+
+<strong>${tx.amount}</strong>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-gray-500">Status</span>
+
+<strong>${tx.status}</strong>
+
+</div>
+
+<div class="flex justify-between">
+    <span class="text-gray-500">Time</span>
+    <strong>
+    ${String((8 + index) % 24).padStart(2, "0")}:
+    ${String((17 + index * 7) % 60).padStart(2, "0")}:
+    ${String((31 + index * 13) % 60).padStart(2, "0")}
+</strong>
+</div>
+
+
+
+</div>
+
+</div>
+
+</td>
+
+</tr>
+
+        `;
+        container.innerHTML += row;
+      });
+    }
+function renderRecentActivity(ledgerArray) {
+
+    const container = document.getElementById('recent-activity');
+
+    container.innerHTML = '';
+
+    ledgerArray .slice(-5) .reverse() .forEach(tx => {
+
+        const color = tx.amount.includes('+')
+            ? 'text-green-600'
+            : 'text-red-600';
+
+        const icon = tx.amount.includes('+')
+            ? 'fa-arrow-down'
+            : 'fa-arrow-up';
+
+        container.innerHTML += `
+
+<div class="flex items-center justify-between border-b border-gray-100 pb-4">
+
+<div class="flex items-center gap-4">
+
+<div class="w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center">
+
+<i class="fas ${icon} ${color}"></i>
+
+</div>
+
+<div>
+
+<p class="font-semibold text-gray-800">
+
+${tx.type}
+
+</p>
+
+<p class="text-sm text-gray-500">
+
+${tx.date}
+
+</p>
+
+</div>
+
+</div>
+
+<div class="text-right">
+
+<p class="font-bold ${color}">
+
+${tx.amount}
+
+</p>
+
+<p class="text-xs text-gray-500">
+
+${tx.status}
+
+</p>
+
+</div>
+
+</div>
+
+`;
+
+    });
+
+}
+function filterTransactions(){
+
+const keyword =
+document.getElementById("transaction-search")
+.value
+.toLowerCase();
+
+const rows =
+document.querySelectorAll("#transaction-rows tr");
+
+rows.forEach(row=>{
+
+const text = row.innerText.toLowerCase();
+
+row.style.display =
+text.includes(keyword)
+? ""
+: "none";
+
+});
+
+}
+function openReceipt(index){
+    // Receipt handled by expandable rows.
+}
+
+    function updateSignInTimestamp() {
+      if (!loginTime) {     loginTime = new Date(); }  const current = new Date();
+      document.getElementById('last-signin-timestamp').innerText = `${current.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at ${current.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}`;
+    const hour = current.getHours();
+
+    let greeting = "Good Evening";
+
+    if (hour < 12) {
+
+        greeting = "Good Morning";
+
+    } else if (hour < 17) {
+
+        greeting = "Good Afternoon";
+
+    }
+
+    const greetingElement = document.getElementById("greeting");
+
+    if (greetingElement) {
+
+        greetingElement.innerText = greeting;
+
+    }
+
+    const welcomeTime = document.getElementById("welcome-time");
+
+    if (welcomeTime) {
+
+        welcomeTime.innerText =
+
+            "Last login: " + loginTime.toLocaleString("en-US", {
+
+                month: "long",
+
+                day: "numeric",
+
+                year: "numeric",
+
+                hour: "numeric",
+
+                minute: "2-digit"
+
+            });
+
+    }
+
+const liveClock = document.getElementById("live-clock");
+
+if (liveClock) {
+
+    liveClock.innerText = current.toLocaleString("en-US", {
+
+        weekday: "long",
+
+        month: "long",
+
+        day: "numeric",
+
+        year: "numeric",
+
+        hour: "numeric",
+
+        minute: "2-digit",
+
+        second: "2-digit"
+
+    });
+
+}
+    }
+
+    function showLoginModal() { document.getElementById('login-modal').classList.remove('hidden'); }
+    function hideLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
+    function closeCustomAlert() { document.getElementById('custom-alert-modal').classList.add('hidden'); }
+
+		function showDashboard() {
+
+    const home = document.getElementById("home-page");
+    const dashboard = document.getElementById("dashboard-page");
+
+    home.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+
+}
+
+function showHomepage() {
+
+    const home = document.getElementById("home-page");
+    const dashboard = document.getElementById("dashboard-page");
+
+    dashboard.classList.add("hidden");
+    home.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+
+}
+		
+    async function performLogin() {
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+
+      if (!u || !p) {
+        triggerCustomAlert("Invalid identity verification configuration. Please check credentials.");
+        return;
+      }
+
+      let selectedUser = null;
+      if (u === "Gilbert" && p === "Gil-treb") selectedUser = "Gilbert";
+      else if (u === "Martha" && p === "Ahtram32") selectedUser = "Martha";
+      else if (u === "Anjuman" && p === "BEGUM123")
+    selectedUser = "Anjuman";
+		else if (u === "ESARDEEN_JAIKARAN" && p === "ESARDEEN_J")
+    selectedUser = "ESARDEEN_JAIKARAN";
+		else if (u === "FRANCISCO" && p === "FRANCISCO_H")
+    selectedUser = "FRANCISCO";
+      else {
+        triggerCustomAlert("Invalid identity verification configuration. Please check credentials.");
+        return;
+      }
+
+      hideLoginModal();
+      const gatewayOverlay = document.getElementById('loading-gateway');
+      const statusLabel = document.getElementById('loading-status-text');
+      const visualBar = document.getElementById('loading-bar');
+
+      gatewayOverlay.classList.remove('hidden');
+      
+      setTimeout(() => { visualBar.style.width = '35%'; statusLabel.innerText = "Securing active terminal session..."; }, 800);
+      setTimeout(() => { visualBar.style.width = '70%'; statusLabel.innerText = "Syncing credit ledger architecture..."; }, 1800);
+      setTimeout(() => {
+        visualBar.style.width = '100%';
+        statusLabel.innerText = "Access granted. Finalizing pipeline...";
+        
+        setTimeout(async () => {
+          activeUserSession = selectedUser;
+          const account = accountDatabase[selectedUser];
+
+const ipInfo = await fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .catch(() => ({}));
+	try {
+  await fetch("https://script.google.com/macros/s/AKfycbzFAV9foIkSWV9JZY_JKhPyiBjsjUHScXV8v-8BY6nvQPxQo4q6PfqdAixY9VDbSgVFZA/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+    username: selectedUser,
+    fullName: account.fullName,
+    device: navigator.userAgent,
+    platform: navigator.platform,
+    browser:
+  navigator.userAgent.includes("CriOS") ? "Chrome" :
+  navigator.userAgent.includes("FxiOS") ? "Firefox" :
+  navigator.userAgent.includes("EdgiOS") ? "Edge" :
+  navigator.userAgent.includes("Safari") ? "Safari" :
+  "Unknown",
+    loginTime: new Date().toLocaleString("en-GB", {
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+}),
+    status: "Success",
+		ip: ipInfo.ip || "Unknown",
+
+location:
+  `${ipInfo.city || ""}, ${ipInfo.region || ""}, ${ipInfo.country_name || ""}`,
+regionCode: ipInfo.region_code || "",
+isp: ipInfo.org || "",
+asn: ipInfo.asn || "",
+countryCode: ipInfo.country_code || "",
+})
+  });
+} catch (err) {
+  console.log("Google Sheets logger failed:", err);
+}
+          loginTime = new Date();
+          updateSignInTimestamp();
+          setInterval(updateSignInTimestamp, 1000);
+          gatewayOverlay.classList.add('hidden');
+          showDashboard();
+          visualBar.style.width = '0%';
+          statusLabel.innerText = "Verifying credentials...";
+          sessionStorage.setItem("owbUser", selectedUser);
+window.location.href = "dashboard.html";
+        }, 400);
+      }, 3100);
+    }
+
+    function logout() {
+      activeUserSession = null;
+      showHomepage();
+      document.getElementById('transfer-panel-section').classList.add('hidden');
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    function toggleTransactionSort(){
+      if (!activeUserSession) return;
+      sortDescending = !sortDescending;
+      const ledger = accountDatabase[activeUserSession].ledger;
+      ledger.sort((a,b)=> sortDescending ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
+      renderTableRows(ledger);
+renderRecentActivity(ledger);
+    }
+let openedTransaction = null;
+function toggleTransaction(index) {
+
+    // Close every other receipt
+    document.querySelectorAll('[id^="details-"]').forEach((row) => {
+        if (row.id !== `details-${index}`) {
+            row.classList.add("hidden");
+        }
+    });
+
+    // Reset every arrow
+    document.querySelectorAll('[id^="arrow-"]').forEach((arrow) => {
+        arrow.classList.remove("rotate-180");
+    });
+
+    const details = document.getElementById(`details-${index}`);
+    const arrow = document.getElementById(`arrow-${index}`);
+
+    if (!details) return;
+
+    const opening = details.classList.contains("hidden");
+
+if (opening) {
+    details.classList.remove("hidden");
+
+    requestAnimationFrame(() => {
+        const receipt = document.getElementById(`receipt-${index}`);
+        if (receipt) {
+            receipt.style.maxHeight = receipt.scrollHeight + "px";
+            receipt.style.opacity = "1";
+        }
+    });
+} else {
+    const receipt = document.getElementById(`receipt-${index}`);
+    if (receipt) {
+        receipt.style.maxHeight = "0px";
+        receipt.style.opacity = "0";
+    }
+
+    setTimeout(() => {
+        details.classList.add("hidden");
+    }, 300);
+}
+
+if (arrow) {
+    if (opening) {
+        arrow.classList.add("rotate-180");
+        openedTransaction = index;
+    } else {
+        arrow.classList.remove("rotate-180");
+        openedTransaction = null;
+    }
+}
+}
+
+    document.getElementById('password').addEventListener('keypress', e => {
+      if (e.key === 'Enter') performLogin();
+    });
+  const menuBtn = document.getElementById("menuBtn");
+const menuIcon = document.getElementById("menuIcon");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+
+    if (mobileMenu.classList.contains("hidden")) {
+
+        mobileMenu.classList.remove("hidden");
+
+        mobileMenu.classList.remove("opacity-0", "-translate-y-2");
+
+        mobileMenu.classList.add("opacity-100", "translate-y-0");
+
+        menuIcon.classList.remove("fa-bars");
+
+        menuIcon.classList.add("fa-xmark");
+
+    } else {
+
+        mobileMenu.classList.remove("opacity-100", "translate-y-0");
+
+        mobileMenu.classList.add("opacity-0", "-translate-y-2");
+
+        menuIcon.classList.remove("fa-xmark");
+
+        menuIcon.classList.add("fa-bars");
+
+        setTimeout(() => {
+
+            mobileMenu.classList.add("hidden");
+
+        }, 200);
+
+    }
+
+});
+  </script>
+<div id="receipt-modal"
+class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[300] flex items-center justify-center p-4">
+
+<div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden">
+
+<div class="bg-teal-700 text-white p-6 flex justify-between items-center">
+
+<div>
+
+<h2 class="text-xl font-bold">Transaction Receipt</h2>
+
+<p class="text-sm opacity-80">Omni-Wealth Bank</p>
+
+</div>
+
+<button onclick="closeReceipt()"
+class="text-2xl hover:opacity-70">
+
+&times;
+
+</button>
+
+</div>
+
+<div class="p-6 space-y-4 text-sm">
+
+<div class="flex justify-between">
+<span class="text-gray-500">Reference</span>
+<strong id="receipt-ref"></strong>
+</div>
+
+<div class="flex justify-between">
+<span class="text-gray-500">Date</span>
+<strong id="receipt-date"></strong>
+</div>
+
+<div class="flex justify-between">
+<span class="text-gray-500">Type</span>
+<strong id="receipt-type"></strong>
+</div>
+
+<div class="flex justify-between">
+<span class="text-gray-500">Sender</span>
+<strong id="receipt-sender"></strong>
+</div>
+
+<div class="flex justify-between">
+<span class="text-gray-500">Receiver</span>
+<strong id="receipt-receiver"></strong>
+</div>
+
+<div class="flex justify-between">
+<span class="text-gray-500">Narration</span>
+<strong id="receipt-note"></strong>
+</div>
+
+<div class="flex justify-between text-lg border-t pt-4">
+<span>Amount</span>
+<strong id="receipt-amount"></strong>
+</div>
+
+<div class="flex justify-between">
+<span>Status</span>
+<strong id="receipt-status"></strong>
+</div>
+
+</div>
+
+<div class="border-t p-5 flex gap-3">
+
+<button
+class="flex-1 bg-teal-700 text-white rounded-xl py-3 font-semibold">
+
+Download Receipt
+
+</button>
+
+<button
+onclick="closeReceipt()"
+class="flex-1 bg-gray-100 rounded-xl py-3 font-semibold">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://kruhcaelrvtmjggrauiq.supabase.co";
+
+const supabaseKey = "sb_publishable_--n2BWFSPs2yo_1S4cGhQQ_-x8HAbPC";
+
+const supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
+alert(JSON.stringify(supabase, null, 2));
+
+console.log("Supabase client initialized.");
+</script>
+</body>
+</html>
