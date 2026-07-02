@@ -1296,7 +1296,15 @@ window.onload = function () {
 function renderActiveDashboard() {
       const data = accountDatabase[activeUserSession];
       balanceVisible = true;
-      if (!data) return;
+      if (!data) {
+    alert(
+        "activeUserSession = " +
+        activeUserSession +
+        "\n\nAvailable accounts:\n" +
+        Object.keys(accountDatabase).join(", ")
+    );
+    return;
+}
 
       document.getElementById('greeting-name').innerText = data.fullName;
       document.getElementById('member-id-label').innerText = data.memberId;
