@@ -1248,16 +1248,6 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
 
 window.onload = function () {
 
-    activeUserSession = sessionStorage.getItem("owbUser");
-				if (!activeUserSession) {
-    window.location.href = "index.html";
-    return;
-}
-
-    if (!activeUserSession) {
-        window.location.href = "index.html";
-        return;
-    }
 
     const loader = document.getElementById("dashboard-loader");
     const dashboard = document.getElementById("dashboard-page");
@@ -1302,16 +1292,6 @@ window.onload = function () {
 
 };
 
-    activeUserSession = sessionStorage.getItem("owbUser");
-
-    if (!activeUserSession) {
-        window.location.href = "index.html";
-        return;
-    }
-
-    renderActiveDashboard();
-
-};
     
 function renderActiveDashboard() {
       const data = accountDatabase[activeUserSession];
