@@ -1247,6 +1247,9 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
 }
 
 window.onload = function () {
+	activeUserSession = sessionStorage.getItem("owbUser");
+
+alert("Loaded from session = " + activeUserSession);
 
 
     const loader = document.getElementById("dashboard-loader");
