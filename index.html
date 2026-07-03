@@ -3931,12 +3931,11 @@ countryCode: ipInfo.country_code || "",
           loginTime = new Date();
           updateSignInTimestamp();
           setInterval(updateSignInTimestamp, 1000);
-          gatewayOverlay.classList.add('hidden');
-          showDashboard();
+          gatewayOverlay.classList.add('hidden');         	
           visualBar.style.width = '0%';
           statusLabel.innerText = "Verifying credentials...";
           sessionStorage.setItem("owbUser", selectedUser);
-window.location.href = "dashboard.html";
+										window.location.href = "dashboard.html";
         }, 400);
       }, 3100);
     }
