@@ -1392,13 +1392,17 @@ window.onload = function () {
 
     setTimeout(() => {
 
-        renderActiveDashboard();
+        setTimeout(() => {
 
-        loader.style.display = "none";
+    alert("Reached 2900ms");
 
-        dashboard.style.display = "block";
+    renderActiveDashboard();
 
-    }, 2900);
+    loader.style.display = "none";
+
+    dashboard.style.display = "block";
+
+}, 2900);
 
 };
 
@@ -1478,8 +1482,7 @@ if (
     incomeCard.style.display = "";
     expensesCard.style.display = "";
 }
-      // renderTableRows(data.ledger);
-// renderRecentActivity(data.ledger);
+      renderTableRows(data.ledger); renderRecentActivity(data.ledger);
     }
 
 function toggleBalance() {
