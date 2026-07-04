@@ -1194,10 +1194,7 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
 				function initializeDashboardClock() {
 
     const now = new Date();
-
-    if (!sessionStorage.getItem("owbLoginTime")) {
-        sessionStorage.setItem("owbLoginTime", now.toISOString());
-    }
+    	
 
     const storedLogin = new Date(
         sessionStorage.getItem("owbLoginTime")
@@ -1814,7 +1811,14 @@ countryCode: ipInfo.country_code || "",
 } catch (err) {
   console.log("Google Sheets logger failed:", err);
 }
-          loginTime = new Date();
+          const loginMoment = new Date();
+
+sessionStorage.setItem(
+    "owbLoginTime",
+    loginMoment.toISOString()
+);
+
+loginTime = loginMoment;
 
 gatewayOverlay.classList.add("hidden");
 
