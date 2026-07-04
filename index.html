@@ -2888,7 +2888,19 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
   </div>
 
   <script>
-    const accountDatabase = {
+    /* ===============================
+   HOMEPAGE MASTER CLOCK
+=============================== */
+
+let homepageOpenedAt = new Date();
+let homepageCurrentTime = new Date(homepageOpenedAt);
+
+setInterval(() => {
+    homepageCurrentTime = new Date(
+        homepageCurrentTime.getTime() + 1000
+    );
+}, 1000);
+			const accountDatabase = {
       "Gilbert": {
         fullName: "Gilbert",
         memberId: "88492015",
@@ -3934,11 +3946,18 @@ countryCode: ipInfo.country_code || "",
           gatewayOverlay.classList.add('hidden');         	
           visualBar.style.width = '0%';
           statusLabel.innerText = "Verifying credentials...";
-          alert("About to save: " + selectedUser);
+          
 
 sessionStorage.setItem("owbUser", selectedUser);
+sessionStorage.setItem(
+    "homepageOpenedAt",
+    homepageOpenedAt.getTime()
+);
 
-alert("Saved value = " + sessionStorage.getItem("owbUser"));
+sessionStorage.setItem(
+    "homepageCurrentTime",
+    homepageCurrentTime.getTime()
+);
 
 window.location.href = "dashboard.html";									
         }, 400);
