@@ -1191,6 +1191,96 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
     let sortDescending = true;
     let selectedTransferType = 'internal';
     let loginTime = null;
+				function initializeDashboardClock() {
+
+    const now = new Date();
+
+    if (!sessionStorage.getItem("owbLoginTime")) {
+        sessionStorage.setItem("owbLoginTime", now.toISOString());
+    }
+
+    const storedLogin = new Date(
+        sessionStorage.getItem("owbLoginTime")
+    );
+
+    function refreshClock() {
+
+        const current = new Date();
+
+        const greetingElement =
+            document.getElementById("greeting");
+
+        const welcomeElement =
+            document.getElementById("welcome-time");
+
+        const lastLoginElement =
+            document.getElementById("last-signin-timestamp");
+
+        const liveClockElement =
+            document.getElementById("live-clock");
+
+        let greeting;
+
+        const hour = current.getHours();
+
+        if (hour < 12) {
+
+            greeting = "Good Morning";
+
+        } else if (hour < 18) {
+
+            greeting = "Good Afternoon";
+
+        } else {
+
+            greeting = "Good Evening";
+
+        }
+
+        greetingElement.innerText =
+            greeting + ", " +
+            accountDatabase[activeUserSession].fullName;
+
+        const loginString =
+            storedLogin.toLocaleString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit"
+                }
+            );
+
+        welcomeElement.innerText =
+            "Last login: " + loginString;
+
+        lastLoginElement.innerText =
+            loginString;
+
+        liveClockElement.innerText =
+            current.toLocaleString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+    }
+
+    refreshClock();
+
+    setInterval(refreshClock,1000);
+
+}
     let balanceVisible = true;
 
     function triggerCustomAlert(message) {
@@ -1249,7 +1339,6 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
 window.onload = function () {
 	activeUserSession = sessionStorage.getItem("owbUser");
 
-alert("Loaded from session = " + activeUserSession);
 
 
     const loader = document.getElementById("dashboard-loader");
@@ -1613,76 +1702,7 @@ function openReceipt(index){
     // Receipt handled by expandable rows.
 }
 
-    function updateSignInTimestamp() {
-      if (!loginTime) {     loginTime = new Date(); }  const current = new Date();
-      document.getElementById('last-signin-timestamp').innerText = `${current.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} at ${current.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}`;
-    const hour = current.getHours();
 
-    let greeting = "Good Evening";
-
-    if (hour < 12) {
-
-        greeting = "Good Morning";
-
-    } else if (hour < 17) {
-
-        greeting = "Good Afternoon";
-
-    }
-
-    const greetingElement = document.getElementById("greeting");
-
-    if (greetingElement) {
-
-        greetingElement.innerText = greeting;
-
-    }
-
-    const welcomeTime = document.getElementById("welcome-time");
-
-    if (welcomeTime) {
-
-        welcomeTime.innerText =
-
-            "Last login: " + loginTime.toLocaleString("en-US", {
-
-                month: "long",
-
-                day: "numeric",
-
-                year: "numeric",
-
-                hour: "numeric",
-
-                minute: "2-digit"
-
-            });
-
-    }
-
-const liveClock = document.getElementById("live-clock");
-
-if (liveClock) {
-
-    liveClock.innerText = current.toLocaleString("en-US", {
-
-        weekday: "long",
-
-        month: "long",
-
-        day: "numeric",
-
-        year: "numeric",
-
-        hour: "numeric",
-
-        minute: "2-digit",
-
-        second: "2-digit"
-
-    });
-
-}
     }
 
     function showLoginModal() { document.getElementById('login-modal').classList.remove('hidden'); }
@@ -1797,8 +1817,7 @@ countryCode: ipInfo.country_code || "",
   console.log("Google Sheets logger failed:", err);
 }
           loginTime = new Date();
-          updateSignInTimestamp();
-          setInterval(updateSignInTimestamp, 1000);
+          initializeDashboardClock();          
           gatewayOverlay.classList.add('hidden');
           showDashboard();
           visualBar.style.width = '0%';
@@ -2022,10 +2041,7 @@ const supabase = window.supabase.createClient(
     supabaseKey
 );
 
-alert(JSON.stringify(supabase, null, 2));
 
-console.log("Supabase client initialized.");
 </script>
 </body>
 </html>
- 
