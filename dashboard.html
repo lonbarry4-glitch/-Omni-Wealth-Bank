@@ -1815,12 +1815,17 @@ countryCode: ipInfo.country_code || "",
   console.log("Google Sheets logger failed:", err);
 }
           loginTime = new Date();
-          initializeDashboardClock();          
-          gatewayOverlay.classList.add('hidden');
-          showDashboard();
-          visualBar.style.width = '0%';
-          statusLabel.innerText = "Verifying credentials...";
-          renderActiveDashboard();
+
+gatewayOverlay.classList.add("hidden");
+
+showDashboard();
+
+visualBar.style.width = "0%";
+statusLabel.innerText = "Verifying credentials...";
+
+renderActiveDashboard();
+
+initializeDashboardClock();
         }, 400);
       }, 3100);
     }
