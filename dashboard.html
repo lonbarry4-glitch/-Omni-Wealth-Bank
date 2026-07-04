@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1850,8 +1850,14 @@ statusLabel.innerText = "Verifying credentials...";
 
 renderActiveDashboard();
 
+alert("Reached requestAnimationFrame");
+
 requestAnimationFrame(() => {
+
+    alert("About to call initializeDashboardClock()");
+
     initializeDashboardClock();
+
 });
         }, 400);
       }, 3100);
