@@ -1829,7 +1829,9 @@ statusLabel.innerText = "Verifying credentials...";
 
 renderActiveDashboard();
 
-initializeDashboardClock();
+requestAnimationFrame(() => {
+    initializeDashboardClock();
+});
         }, 400);
       }, 3100);
     }
@@ -2090,4 +2092,3 @@ const supabase = window.supabase.createClient(
 </script>
 </body>
 </html>
- 
