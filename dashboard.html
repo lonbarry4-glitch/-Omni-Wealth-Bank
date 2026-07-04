@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1206,18 +1206,19 @@ const loginTimestamp =
     (dashboardOpenedAt - homepageOpenedAt);
 
 let sessionClock = loginTimestamp;
-alert(
-"homepageOpenedAt: " + homepageOpenedAt +
+console.log("===== MECHANIZED CLOCK =====");
 
-"\n\nhomepageCurrentTime: " + homepageCurrentTime +
+console.log("homepageOpenedAt:", homepageOpenedAt);
 
-"\n\ndashboardOpenedAt: " + dashboardOpenedAt +
+console.log("homepageCurrentTime:", homepageCurrentTime);
 
-"\n\nloginTimestamp: " + loginTimestamp +
+console.log("dashboardOpenedAt:", dashboardOpenedAt);
 
-"\n\nCalculated Login:\n" +
+console.log("loginTimestamp:", loginTimestamp);
 
-new Date(loginTimestamp).toString()
+console.log(
+    "Calculated Login:",
+    new Date(loginTimestamp).toString()
 );
     function refreshClock() {
 
