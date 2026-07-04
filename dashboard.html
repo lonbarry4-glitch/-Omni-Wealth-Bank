@@ -1841,23 +1841,27 @@ sessionStorage.setItem(
 
 loginTime = loginMoment;
 
+alert("1");
+
 gatewayOverlay.classList.add("hidden");
+
+alert("2");
 
 showDashboard();
 
+alert("3");
+
 visualBar.style.width = "0%";
+
+alert("4");
+
 statusLabel.innerText = "Verifying credentials...";
+
+alert("5");
 
 renderActiveDashboard();
 
-alert("Reached requestAnimationFrame");
-
-requestAnimationFrame(() => {
-
-    alert("About to call initializeDashboardClock()");
-
-    initializeDashboardClock();
-
+alert("6");
 });
         }, 400);
       }, 3100);
