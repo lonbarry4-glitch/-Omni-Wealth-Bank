@@ -1193,16 +1193,35 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
     let loginTime = null;
 				function initializeDashboardClock() {
 
-    const now = new Date();
-    	
+					const homepageOpenedAt =
+    Number(sessionStorage.getItem("homepageOpenedAt"));
 
-    const storedLogin = new Date(
-        sessionStorage.getItem("owbLoginTime")
-    );
+const homepageCurrentTime =
+    Number(sessionStorage.getItem("homepageCurrentTime"));
 
+const dashboardOpenedAt = Date.now();
+
+const loginTimestamp =
+    homepageCurrentTime +
+    (dashboardOpenedAt - homepageOpenedAt);
+
+let sessionClock = loginTimestamp;
+alert(
+"homepageOpenedAt: " + homepageOpenedAt +
+
+"\n\nhomepageCurrentTime: " + homepageCurrentTime +
+
+"\n\ndashboardOpenedAt: " + dashboardOpenedAt +
+
+"\n\nloginTimestamp: " + loginTimestamp +
+
+"\n\nCalculated Login:\n" +
+
+new Date(loginTimestamp).toString()
+);
     function refreshClock() {
 
-        const current = new Date();
+        const current = new Date(sessionClock);
 
         const greetingElement =
             document.getElementById("greeting");
@@ -1239,7 +1258,7 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
             accountDatabase[activeUserSession].fullName;
 
         const loginString =
-            storedLogin.toLocaleString(
+            new Date(loginTimestamp).toLocaleString(
                 "en-US",
                 {
                     weekday: "long",
@@ -1270,6 +1289,8 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
                     second: "2-digit"
                 }
             );
+												
+sessionClock += 1000;
 
     }
 
@@ -1277,7 +1298,6 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
 
     setInterval(refreshClock,1000);
 
-}
     let balanceVisible = true;
 
     function triggerCustomAlert(message) {
