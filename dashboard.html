@@ -1407,6 +1407,10 @@ window.onload = function () {
 
     
 function renderActiveDashboard() {
+alert(
+    "Session: " + activeUserSession +
+    "\nExists: " + (activeUserSession in accountDatabase)
+);
       const data = accountDatabase[activeUserSession];
       balanceVisible = true;
       if (!data) {
