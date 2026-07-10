@@ -1353,7 +1353,7 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
     triggerCustomAlert("Please contact your private OWB representative.\n\n+1 (365) 480-6368");
 }
 
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function() {
     activeUserSession = sessionStorage.getItem("owbUser");
     
     // If no user is logged in, redirect to index
@@ -1389,7 +1389,7 @@ window.onload = function () {
         loader.style.display = "none";
         dashboard.style.display = "block";
     }, 2900);
-};
+});
 
 
     
