@@ -12,7 +12,7 @@
     .credit { color: #22c55e; font-weight: bold; }
     .hidden { display: none !important; }
     .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://picsum.photos/id/1015/1920/1080'); background-size: cover; }
-		.perspective-\[1800px\]{
+        .perspective-\[1800px\]{
     perspective:1800px;
 }
 
@@ -156,11 +156,83 @@ scale(1);
 }
 
 }
-  </style>
+  
+    /* === CRITICAL FIXES FOR PAGE SWITCHING === */
+
+    /* Ensure hidden pages are completely removed from layout */
+    .page-hidden {
+        display: none !important;
+    }
+
+    /* When a page is active, ensure it takes full control */
+    .page-active {
+        display: block !important;
+    }
+
+    /* Prevent any bleed-through from hidden pages */
+    #home-page.page-hidden,
+    #dashboard-page.page-hidden {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    /* Ensure active page is properly displayed */
+    #home-page.page-active,
+    #dashboard-page.page-active {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        clip: auto !important;
+        margin: 0 !important;
+    }
+
+    /* Body should not scroll when dashboard is active - let dashboard handle its own scroll */
+    body.dashboard-open {
+        overflow: hidden;
+    }
+
+    body.dashboard-open #home-page {
+        display: none !important;
+    }
+
+    /* Dashboard page should be full viewport and scrollable */
+    #dashboard-page.page-active {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        z-index: 100 !important;
+        background: #f9fafb !important; /* bg-gray-50 */
+    }
+
+    /* Ensure home page doesn't interfere when hidden */
+    #home-page.page-hidden * {
+        display: none !important;
+    }
+</style>
 </head>
 <body class="bg-gray-50 min-h-screen">
 
-  <div id="home-page">
+  <div id="home-page" class="page-active">
 
     <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-gray-200">
 
@@ -1249,7 +1321,7 @@ Coming Soon for Android
 
 <!-- RIGHT -->
 <div class="flex justify-center relative">
-	<!-- Ambient Glow -->
+    <!-- Ambient Glow -->
 
 <div
 class="absolute w-[520px] h-[520px]
@@ -1761,7 +1833,7 @@ Portfolio Performance
 
 <div>
 
-	
+    
 
 <div>
     <div class="flex justify-between mb-2">
@@ -2376,12 +2448,10 @@ Secure • Trusted • Global
 
 </div>
 
-</div>
-
 </footer>
   </div>
 
-  <div id="dashboard-page" class="hidden">
+  <div id="dashboard-page" class="page-hidden">
     <div class="bg-teal-700 text-white p-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <i class="fas fa-bars text-xl"></i>
@@ -2888,19 +2958,7 @@ class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-72 max-w-full
   </div>
 
   <script>
-    /* ===============================
-   HOMEPAGE MASTER CLOCK
-=============================== */
-
-let homepageOpenedAt = new Date();
-let homepageCurrentTime = new Date(homepageOpenedAt);
-
-setInterval(() => {
-    homepageCurrentTime = new Date(
-        homepageCurrentTime.getTime() + 1000
-    );
-}, 1000);
-			const accountDatabase = {
+    const accountDatabase = {
       "Gilbert": {
         fullName: "Gilbert",
         memberId: "88492015",
@@ -3052,7 +3110,7 @@ setInterval(() => {
     avatar: "EJ",
 
     ledger: [
-		{ date: "2023-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AAPL-DIV/39184-A/84726/CREDIT", amount: "+$720.00", status: "SUCCESSFUL" },
+        { date: "2023-03-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AAPL-DIV/39184-A/84726/CREDIT", amount: "+$720.00", status: "SUCCESSFUL" },
 { date: "2023-04-12", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "MSFT-DIV/84725-B/19508/CREDIT", amount: "+$810.00", status: "SUCCESSFUL" },
 { date: "2023-05-20", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "JPM-DIV/10498-C/66371/CREDIT", amount: "+$911.25", status: "SUCCESSFUL" },
 { date: "2023-06-15", type: "CREDIT", sender: "Omni Share Dividends", receiver: "ESARDEEN JAIKARAN", narration: "AMZN-DIV/77841-D/20495/CREDIT", amount: "+$1,025.16", status: "SUCCESSFUL" },
@@ -3394,33 +3452,6 @@ setInterval(() => {
     let selectedTransferType = 'internal';
     let loginTime = null;
     let balanceVisible = true;
-    
-    function initializeDashboardClock() {
-    // Check if user exists before accessing their data
-    if (!activeUserSession || !accountDatabase[activeUserSession]) {
-        return;
-    }
-    
-    // Update greeting and time
-    const now = new Date();
-    const hour = now.getHours();
-    let greeting = "Good Evening";
-    if (hour < 12) greeting = "Good Morning";
-    else if (hour < 17) greeting = "Good Afternoon";
-    
-    const greetingElement = document.getElementById("greeting");
-    if (greetingElement) {
-        greetingElement.innerText = greeting + ", " + accountDatabase[activeUserSession].fullName;
-    }
-    
-    const welcomeTime = document.getElementById("welcome-time");
-    if (welcomeTime && loginTime) {
-        welcomeTime.innerText = "Last login: " + loginTime.toLocaleString("en-US", {
-            month: "long", day: "numeric", year: "numeric",
-            hour: "numeric", minute: "2-digit"
-        });
-    }
-}
 
     function triggerCustomAlert(message) {
       document.getElementById('custom-alert-text').innerText = message;
@@ -3503,8 +3534,8 @@ if (
 
     headerText.classList.remove("hidden");
     headerText.classList.add("flex");
-		
-		navText.innerText = data.avatar;
+        
+        navText.innerText = data.avatar;
 headerText.innerText = data.avatar;
 
 } else {
@@ -3860,36 +3891,6 @@ if (liveClock) {
     function hideLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
     function closeCustomAlert() { document.getElementById('custom-alert-modal').classList.add('hidden'); }
 
-		function showDashboard() {
-
-    const home = document.getElementById("home-page");
-    const dashboard = document.getElementById("dashboard-page");
-
-    home.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-}
-
-function showHomepage() {
-
-    const home = document.getElementById("home-page");
-    const dashboard = document.getElementById("dashboard-page");
-
-    dashboard.classList.add("hidden");
-    home.classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-}
-		
     async function performLogin() {
       const u = document.getElementById('username').value.trim();
       const p = document.getElementById('password').value.trim();
@@ -3904,9 +3905,9 @@ function showHomepage() {
       else if (u === "Martha" && p === "Ahtram32") selectedUser = "Martha";
       else if (u === "Anjuman" && p === "BEGUM123")
     selectedUser = "Anjuman";
-		else if (u === "ESARDEEN_JAIKARAN" && p === "ESARDEEN_J")
+        else if (u === "ESARDEEN_JAIKARAN" && p === "ESARDEEN_J")
     selectedUser = "ESARDEEN_JAIKARAN";
-		else if (u === "FRANCISCO" && p === "FRANCISCO_H")
+        else if (u === "FRANCISCO" && p === "FRANCISCO_H")
     selectedUser = "FRANCISCO";
       else {
         triggerCustomAlert("Invalid identity verification configuration. Please check credentials.");
@@ -3933,7 +3934,7 @@ function showHomepage() {
 const ipInfo = await fetch("https://ipapi.co/json/")
   .then(res => res.json())
   .catch(() => ({}));
-	try {
+    try {
   await fetch("https://script.google.com/macros/s/AKfycbzFAV9foIkSWV9JZY_JKhPyiBjsjUHScXV8v-8BY6nvQPxQo4q6PfqdAixY9VDbSgVFZA/exec", {
     method: "POST",
     headers: {
@@ -3954,7 +3955,7 @@ const ipInfo = await fetch("https://ipapi.co/json/")
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
 }),
     status: "Success",
-		ip: ipInfo.ip || "Unknown",
+        ip: ipInfo.ip || "Unknown",
 
 location:
   `${ipInfo.city || ""}, ${ipInfo.region || ""}, ${ipInfo.country_name || ""}`,
@@ -3970,30 +3971,51 @@ countryCode: ipInfo.country_code || "",
           loginTime = new Date();
           updateSignInTimestamp();
           setInterval(updateSignInTimestamp, 1000);
-          gatewayOverlay.classList.add('hidden');         	
+          gatewayOverlay.classList.add('hidden');
+          // CRITICAL FIX: Proper page switching with class-based control
+          const homePage = document.getElementById('home-page');
+          const dashPage = document.getElementById('dashboard-page');
+
+          // Hide home page completely
+          homePage.classList.add('page-hidden');
+          homePage.classList.remove('page-active');
+
+          // Show dashboard page
+          dashPage.classList.remove('page-hidden');
+          dashPage.classList.add('page-active');
+
+          // Add body class to prevent home page scroll interference
+          document.body.classList.add('dashboard-open');
+
+          // Reset scroll position
+          window.scrollTo(0, 0);
+          dashPage.scrollTop = 0;
           visualBar.style.width = '0%';
           statusLabel.innerText = "Verifying credentials...";
-          
-
-sessionStorage.setItem("owbUser", selectedUser);
-sessionStorage.setItem(
-    "homepageOpenedAt",
-    homepageOpenedAt.getTime()
-);
-
-sessionStorage.setItem(
-    "homepageCurrentTime",
-    homepageCurrentTime.getTime()
-);
-
-window.location.href = "dashboard.html";									
+          renderActiveDashboard();
         }, 400);
       }, 3100);
     }
 
     function logout() {
       activeUserSession = null;
-      showHomepage();
+      const homePage = document.getElementById('home-page');
+      const dashPage = document.getElementById('dashboard-page');
+
+      // Hide dashboard completely
+      dashPage.classList.add('page-hidden');
+      dashPage.classList.remove('page-active');
+
+      // Show home page
+      homePage.classList.remove('page-hidden');
+      homePage.classList.add('page-active');
+
+      // Remove body class
+      document.body.classList.remove('dashboard-open');
+
+      // Reset scroll
+      window.scrollTo(0, 0);
+
       document.getElementById('transfer-panel-section').classList.add('hidden');
       document.getElementById('username').value = '';
       document.getElementById('password').value = '';
