@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Omni-Wealth Bank - Online Banking</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:site_name" content="Omni-Wealth Bank" />
+  <meta property="og:title" content="Omni-Wealth Bank - Private Wealth & Global Custody" />
+  <meta property="og:description" content="Omni-Wealth delivers private banking, institutional custody and global wealth solutions designed to preserve, protect and grow capital across generations." />
+  <meta property="og:url" content="https://omniwealth.online" />
+  <meta property="og:image" content="https://res.cloudinary.com/daf2dvttg/image/upload/v1782117867/1891AE9C-FFE0-4F92-B96F-EE0851DD3E65_irkuhq.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://res.cloudinary.com/daf2dvttg/image/upload/v1782117867/1891AE9C-FFE0-4F92-B96F-EE0851DD3E65_irkuhq.jpg" type="image/jpeg" />
+  
+  <style>
+    body { font-family: system-ui; }
+    .debit { color: #ef4444; font-weight: bold; }
+    .credit { color: #22c55e; font-weight: bold; }
+    .hidden { display: none !important; }
+    .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://picsum.photos/id/1015/1920/1080'); background-size: cover; }
+    .perspective-\[1800px\] { perspective:1800px; }
+    #iphone-demo { transform-style:preserve-3d; animation: phoneShowcase 20s cubic-bezier(.45,.05,.15,1) infinite; filter:drop-shadow(0 35px 55px rgba(0,0,0,.28)); }
+    @keyframes phoneShowcase { 0%{ transform: rotateY(-18deg) rotateX(6deg) translateY(0px); } 25%{ transform: rotateY(-8deg) rotateX(4deg) translateY(-8px); } 50%{ transform: rotateY(0deg) rotateX(0deg) translateY(-12px); } 75%{ transform: rotateY(8deg) rotateX(4deg) translateY(-8px); } 100%{ transform: rotateY(18deg) rotateX(6deg) translateY(0px); } }
+    @keyframes phoneScreenScroll { 0%{ transform:translateY(0); } 15%{ transform:translateY(0); } 35%{ transform:translateY(-120px); } 55%{ transform:translateY(-250px); } 75%{ transform:translateY(-390px); } 90%{ transform:translateY(-250px); } 100%{ transform:translateY(0); } }
+    @keyframes balanceGlow { 0%,100%{ transform:scale(1); text-shadow:0 0 0 rgba(16,185,129,.0); } 50%{ transform:scale(1.02); text-shadow:0 0 18px rgba(16,185,129,.35); } }
+    .balance-live { animation:balanceGlow 3.5s ease-in-out infinite; }
+    @keyframes livePulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.7; transform:scale(.94); } }
+    .live-indicator { animation:livePulse 2s infinite; }
+    @keyframes growBar { from { width:0; } }
+    @keyframes notify { 0%,30%,100%{ opacity:0; transform: translateY(-18px) scale(.96); } 40%,80%{ opacity:1; transform: translateY(0) scale(1); } }
+    .page-hidden { display: none !important; }
+    .page-active { display: block !important; }
+    #home-page.page-hidden, #dashboard-page.page-hidden { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; position: absolute !important; width: 0 !important; height: 0 !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; margin: -1px !important; padding: 0 !important; border: 0 !important; }
+    #home-page.page-active, #dashboard-page.page-active { display: block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; width: auto !important; height: auto !important; overflow: visible !important; clip: auto !important; margin: 0 !important; }
+    body.dashboard-open { overflow: hidden; }
+    body.dashboard-open #home-page { display: none !important; }
+    #dashboard-page.page-active { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important; overflow-y: auto !important; overflow-x: hidden !important; z-index: 100 !important; background: #f9fafb !important; }
+    #home-page.page-hidden * { display: none !important; }
+  </style>
   <style>
     body { font-family: system-ui; }
     .debit { color: #ef4444; font-weight: bold; }
@@ -2874,34 +2917,34 @@ Search and review your account activity.
     </div>
   </div>
 
-  <div id="login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-    <div class="bg-white w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative">
-      <button onclick="hideLoginModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 text-xl">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="text-center mb-6">
-        <h3 class="text-xl font-bold text-gray-800">Login</h3>
-        <p class="text-sm text-gray-500 mt-1">Provide your details to securely sign into online services.</p>
-      </div>
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">User Identification Code</label>
-          <div class="relative">
-            <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
-            <input type="text" id="username" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="Enter identifier">
-          </div>
+  <div id="login-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+  <div class="bg-white w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative">
+    <button onclick="hideLoginModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 text-xl">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="text-center mb-6">
+      <h3 class="text-xl font-bold text-gray-800">Login</h3>
+      <p class="text-sm text-gray-500 mt-1">Provide your details to securely sign into online services.</p>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">User Identification Code</label>
+        <div class="relative">
+          <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
+          <input type="text" id="username" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="Enter identifier">
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Secure Account Password</label>
-          <div class="relative">
-            <i class="fas fa-lock absolute left-4 top-3.5 text-gray-400"></i>
-            <input type="password" id="password" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="••••••••">
-          </div>
-        </div>
-        <button onclick="performLogin()" class="w-full bg-teal-700 text-white p-3.5 rounded-xl font-semibold shadow-md hover:bg-teal-800 transition mt-2">Access Portal</button>
       </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Secure Account Password</label>
+        <div class="relative">
+          <i class="fas fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+          <input type="password" id="password" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 pl-11 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" placeholder="••••••••">
+        </div>
+      </div>
+      <button onclick="performLogin()" class="w-full bg-teal-700 text-white p-3.5 rounded-xl font-semibold shadow-md hover:bg-teal-800 transition mt-2">Access Portal</button>
     </div>
   </div>
+</div>
 
   <div id="custom-alert-modal" class="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-[200] p-4 animate-fade-in hidden">
     <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-xl border border-gray-100 text-center">
