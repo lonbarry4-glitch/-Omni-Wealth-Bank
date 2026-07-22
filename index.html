@@ -3952,6 +3952,45 @@ Search and review your account activity.
     let loginTime = null;
     let balanceVisible = true;
 
+    // ===== AUTO-LOGIN CHECK ON PAGE LOAD =====
+    window.addEventListener('DOMContentLoaded', function() {
+        const loggedInUser = sessionStorage.getItem('loggedInUser');
+        const loginTimeStorage = sessionStorage.getItem('loginTime');
+        
+        if (loggedInUser && accountDatabase[loggedInUser]) {
+            // Clear session storage first to prevent infinite loop
+            sessionStorage.removeItem('loggedInUser');
+            sessionStorage.removeItem('loginTime');
+            
+            // User is returning from page reload - show dashboard immediately
+            activeUserSession = loggedInUser;
+            
+            if (loginTimeStorage) {
+                loginTime = new Date(loginTimeStorage);
+            }
+            
+            // Show dashboard
+            const homePage = document.getElementById('home-page');
+            const dashPage = document.getElementById('dashboard-page');
+            
+            homePage.classList.add('page-hidden');
+            homePage.classList.remove('page-active');
+            dashPage.classList.remove('page-hidden');
+            dashPage.classList.add('page-active');
+            document.body.classList.add('dashboard-open');
+            
+            window.scrollTo(0, 0);
+            dashPage.scrollTop = 0;
+            
+            // Render the dashboard
+            renderActiveDashboard();
+            
+            // Update timestamps
+            updateSignInTimestamp();
+            setInterval(updateSignInTimestamp, 1000);
+        }
+    });
+
     function triggerCustomAlert(message) {
       document.getElementById('custom-alert-text').innerText = message;
       document.getElementById('custom-alert-modal').classList.remove('hidden');
@@ -4475,6 +4514,7 @@ if (liveClock) {
             activeUserSession = selectedUser;
             const account = accountDatabase[selectedUser];
 
+            // Keep the IP logging
             const ipInfo = await fetch("https://ipapi.co/json/")
                 .then(res => res.json())
                 .catch(() => ({}));
@@ -4509,29 +4549,21 @@ if (liveClock) {
             } catch (err) {
                 console.log("Google Sheets logger failed:", err);
             }
-            loginTime = new Date();
-            updateSignInTimestamp();
-            setInterval(updateSignInTimestamp, 1000);
+            
+            // ===== CHANGED PART: Use sessionStorage + reload =====
+            // Store the user in sessionStorage
+            sessionStorage.setItem('loggedInUser', selectedUser);
+            sessionStorage.setItem('loginTime', new Date().toISOString());
+            
+            // Hide the gateway overlay
             gatewayOverlay.classList.add('hidden');
             
             // Hide page loader
             pageLoader.classList.remove('show');
             
-            // CRITICAL FIX: Proper page switching with class-based control
-            const homePage = document.getElementById('home-page');
-            const dashPage = document.getElementById('dashboard-page');
-
-            homePage.classList.add('page-hidden');
-            homePage.classList.remove('page-active');
-            dashPage.classList.remove('page-hidden');
-            dashPage.classList.add('page-active');
-            document.body.classList.add('dashboard-open');
-
-            window.scrollTo(0, 0);
-            dashPage.scrollTop = 0;
-            visualBar.style.width = '0%';
-            statusLabel.innerText = "Verifying credentials...";
-            renderActiveDashboard();
+            // RELOAD THE PAGE - This triggers the native browser loading spinner!
+            window.location.reload();
+            
         }, 400);
     }, 3100);
 }
@@ -4768,3 +4800,4 @@ console.log("Supabase client initialized.");
 
 
 </body></html>
+     
