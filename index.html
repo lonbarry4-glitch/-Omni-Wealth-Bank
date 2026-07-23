@@ -4486,86 +4486,52 @@ if (liveClock) {
 
     gatewayOverlay.classList.remove('hidden');
     
-    // Update loader text during login process
+    // Step 1: Verifying Credentials (0s - 0.8s)
     setTimeout(() => { 
         document.querySelector('#page-loader .loader-text').innerText = 'Verifying Credentials...'; 
-    }, 400);
+    }, 200);
     
+    // Step 2: Securing terminal (0.8s - 1.6s)
     setTimeout(() => { 
         visualBar.style.width = '35%'; 
         statusLabel.innerText = "Securing active terminal session..."; 
+        document.querySelector('#page-loader .loader-text').innerText = 'Securing Session...';
     }, 800);
     
+    // Step 3: Syncing Ledger (1.6s - 2.8s)
     setTimeout(() => { 
-        document.querySelector('#page-loader .loader-text').innerText = 'Syncing Ledger...'; 
-    }, 1200);
-    
-    setTimeout(() => { 
-        visualBar.style.width = '70%'; 
+        visualBar.style.width = '55%'; 
         statusLabel.innerText = "Syncing credit ledger architecture..."; 
-    }, 1800);
+        document.querySelector('#page-loader .loader-text').innerText = 'Syncing Ledger...';
+    }, 1600);
     
+    // Step 4: Finalizing (2.8s - 3.8s)
+    setTimeout(() => { 
+        visualBar.style.width = '80%'; 
+        statusLabel.innerText = "Finalizing secure pipeline..."; 
+        document.querySelector('#page-loader .loader-text').innerText = 'Finalizing Session...';
+    }, 2800);
+    
+    // Step 5: Complete and reload (3.8s)
     setTimeout(() => {
         visualBar.style.width = '100%';
-        statusLabel.innerText = "Access granted. Finalizing pipeline...";
-        document.querySelector('#page-loader .loader-text').innerText = 'Finalizing Session...';
+        statusLabel.innerText = "Access granted. Redirecting...";
+        document.querySelector('#page-loader .loader-text').innerText = 'Access Granted!';
         
-        setTimeout(async () => {
-            activeUserSession = selectedUser;
-            const account = accountDatabase[selectedUser];
-
-            // Keep the IP logging
-            const ipInfo = await fetch("https://ipapi.co/json/")
-                .then(res => res.json())
-                .catch(() => ({}));
-            try {
-                await fetch("https://script.google.com/macros/s/AKfycbzFAV9foIkSWV9JZY_JKhPyiBjsjUHScXV8v-8BY6nvQPxQo4q6PfqdAixY9VDbSgVFZA/exec", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8"
-                    },
-                    body: JSON.stringify({
-                        username: selectedUser,
-                        fullName: account.fullName,
-                        device: navigator.userAgent,
-                        platform: navigator.platform,
-                        browser: navigator.userAgent.includes("CriOS") ? "Chrome" :
-                            navigator.userAgent.includes("FxiOS") ? "Firefox" :
-                            navigator.userAgent.includes("EdgiOS") ? "Edge" :
-                            navigator.userAgent.includes("Safari") ? "Safari" :
-                            "Unknown",
-                        loginTime: new Date().toLocaleString("en-GB", {
-                            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-                        }),
-                        status: "Success",
-                        ip: ipInfo.ip || "Unknown",
-                        location: `${ipInfo.city || ""}, ${ipInfo.region || ""}, ${ipInfo.country_name || ""}`,
-                        regionCode: ipInfo.region_code || "",
-                        isp: ipInfo.org || "",
-                        asn: ipInfo.asn || "",
-                        countryCode: ipInfo.country_code || "",
-                    })
-                });
-            } catch (err) {
-                console.log("Google Sheets logger failed:", err);
-            }
-            
-            // ===== CHANGED PART: Use sessionStorage + reload =====
-            // Store the user in sessionStorage
-            sessionStorage.setItem('loggedInUser', selectedUser);
-            sessionStorage.setItem('loginTime', new Date().toISOString());
-            
-            // Hide the gateway overlay
-            gatewayOverlay.classList.add('hidden');
-            
-            // Hide page loader
-            pageLoader.classList.remove('show');
-            
-            // RELOAD THE PAGE - This triggers the native browser loading spinner!
-            window.location.reload();
-            
-        }, 400);
-    }, 3100);
+        // Store user in sessionStorage
+        sessionStorage.setItem('loggedInUser', selectedUser);
+        sessionStorage.setItem('loginTime', new Date().toISOString());
+        
+        // Hide gateway
+        gatewayOverlay.classList.add('hidden');
+        
+        // Hide page loader
+        pageLoader.classList.remove('show');
+        
+        // RELOAD THE PAGE - triggers browser spinner
+        window.location.reload();
+        
+    }, 3800);
 }
 
     function logout() {
@@ -4800,4 +4766,3 @@ console.log("Supabase client initialized.");
 
 
 </body></html>
-     
