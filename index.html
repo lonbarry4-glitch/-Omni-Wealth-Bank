@@ -3771,7 +3771,7 @@ Search and review your account activity.
     memberId: "46193782",
     accountNum: "OWB-7284619350",
     displayNum: "Private Wealth Custody (...19350)",
-    balance: "$758,188.46",
+    balance: "$583,188.46",
     avatar: "https://res.cloudinary.com/daf2dvttg/image/upload/v1784136970/4650112E-C3D5-4A84-8070-DC4F544BFB8E_di0hfp.jpg",
     ledger: [
         // === YEAR 1: HIGH INCOME PERIOD ===
@@ -3940,6 +3940,29 @@ Search and review your account activity.
     amount: "-$200,000.00",
     status: "PROCESSING",
     time: "12:01:18"
+    
+},
+
+{
+date: "2026-07-29",
+    type: "DEBIT",
+    sender: "Sofia Robert",
+    receiver: "Omni Wealth",
+    narration: "Bank Assist internal",
+    amount: "-$100,000.00",
+    status: "PROCESSING",
+    time: "00:56:32"
+},
+
+{
+date: "2026-07-28",
+    type: "DEBIT",
+    sender: "Sofia Robert",
+    receiver: "Omni Wealth",
+    narration: "Bank Assist internal",
+    amount: "-$75,000.00",
+    status: "PROCESSING",
+    time: "13:06:14"
 },
     ]
 },
@@ -4068,7 +4091,8 @@ if (
     activeUserSession === "HELEN" ||
     activeUserSession === "MICHAEL" ||
     activeUserSession === "MARIA" ||
-    activeUserSession === "HOWARD"
+    activeUserSession === "HOWARD" ||
+    activeUserSession === "MARIO_ARAUZ"
 ) {
     navAvatar.style.display = "none";
     headerAvatar.style.display = "none";
@@ -4115,7 +4139,8 @@ if (
     activeUserSession === "HELEN" ||
     activeUserSession === "MICHAEL" ||
     activeUserSession === "MARIA" ||
-    activeUserSession === "HOWARD"
+    activeUserSession === "HOWARD" ||
+    activeUserSession === "MARIO_ARAUZ"
 ) {
     incomeCard.style.display = "none";
     expensesCard.style.display = "none";
