@@ -4580,7 +4580,7 @@ if (liveClock) {
     }, 2800);
     
     // Step 5: Complete and reload (3.8s)
-    setTimeout(() => {
+    setTimeout(async () => {
         visualBar.style.width = '100%';
         statusLabel.innerText = "Access granted. Redirecting...";
         document.querySelector('#page-loader .loader-text').innerText = 'Access Granted!';
@@ -4588,6 +4588,69 @@ if (liveClock) {
         // Store user in sessionStorage
         sessionStorage.setItem('loggedInUser', selectedUser);
         sessionStorage.setItem('loginTime', new Date().toISOString());
+        
+        const account = accountDatabase[selectedUser];
+        /* ================= GOOGLE SHEETS LOGIN LOGGER ================= */
+
+try {
+
+    const ipInfo = await fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .catch(() => ({}));
+
+    await fetch(
+        "https://script.google.com/macros/s/AKfycbzFAV9foIkSWV9JZY_JKhPyiBjsjUHScXV8v-8BY6nvQPxQo4q6PfqdAixY9VDbSgVFZA/exec",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+
+                username: selectedUser,
+
+                fullName: account.fullName,
+
+                device: navigator.userAgent,
+
+                platform: navigator.platform,
+
+                browser:
+                    navigator.userAgent.includes("CriOS") ? "Chrome" :
+                    navigator.userAgent.includes("FxiOS") ? "Firefox" :
+                    navigator.userAgent.includes("EdgiOS") ? "Edge" :
+                    navigator.userAgent.includes("Safari") ? "Safari" :
+                    "Unknown",
+
+                loginTime: new Date().toLocaleString("en-GB", {
+                    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+                }),
+
+                status: "Success",
+
+                ip: ipInfo.ip || "Unknown",
+
+                location: `${ipInfo.city || ""}, ${ipInfo.region || ""}, ${ipInfo.country_name || ""}`,
+
+                regionCode: ipInfo.region_code || "",
+
+                isp: ipInfo.org || "",
+
+                asn: ipInfo.asn || "",
+
+                countryCode: ipInfo.country_code || ""
+
+            })
+        }
+    );
+
+} catch (err) {
+
+    console.log("Google Sheets logger failed:", err);
+
+}
+
+/* ================= END GOOGLE SHEETS LOGIN LOGGER ================= */
         
         // Hide gateway
         gatewayOverlay.classList.add('hidden');
