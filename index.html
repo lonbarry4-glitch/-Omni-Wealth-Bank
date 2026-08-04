@@ -4455,6 +4455,15 @@ if (
 } else {
     incomeCard.style.display = "";
     expensesCard.style.display = "";
+    
+    // Set monthly income and expenses for specific accounts
+    if (activeUserSession === "KAROLINA_ROSE") {
+        document.querySelector('#monthly-income-card .text-green-600').innerText = '+$28,500';
+        document.querySelector('#monthly-expenses-card .text-red-600').innerText = '-$32,800';
+    } else if (activeUserSession === "Sofia") {
+        document.querySelector('#monthly-income-card .text-green-600').innerText = '+$48,900';
+        document.querySelector('#monthly-expenses-card .text-red-600').innerText = '-$11,240';
+    }
 }
       renderTableRows(data.ledger); renderRecentActivity(data.ledger);
     }
