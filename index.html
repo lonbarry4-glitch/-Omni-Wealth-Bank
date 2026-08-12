@@ -4416,7 +4416,27 @@ date: "2026-07-29",
     avatar: "https://res.cloudinary.com/daf2dvttg/image/upload/v1786546638/1A5B1C4C-7946-41A1-8AFC-58F5EBF8ABAC_el5u9c.png",
     ledger: [
         // ... all existing transactions ...
-        { date: "2026-07-14", type: "CREDIT", sender: "Mu'tasim Khalil Al-Misrati", receiver: "Frankie Ifafemi", narration: "    الذهب انبا", amount: "+$425,762.33", status: "SUCCESSFUL" },  // <-- ADD THIS
+        { date: "2026-07-14", type: "CREDIT", sender: "Mu'tasim Khalil Al-Misrati", receiver: "Frankie Ifafemi", narration: "Major settlement", amount: "+$425,762.33", status: "SUCCESSFUL" },  // <-- ADD THIS
+    ]
+},
+
+"KIM_CASTRO": {
+    fullName: "Kim Castro",
+    memberId: "84729163",
+    accountNum: "OWB-5827361940",
+    displayNum: "Private Wealth Custody (...61940)",
+    balance: "$425,762.33",
+    avatar: "https://res.cloudinary.com/daf2dvttg/image/upload/v1786444407/895624F4-D4C5-458A-A873-986648A6726A_bgeokl.jpg",
+    ledger: [
+        { 
+            date: "2026-07-14", 
+            type: "CREDIT", 
+            sender: "Mu'tasim Khalil Al-Misrati", 
+            receiver: "Kim Castro", 
+            narration: "تم بيع الذهب", 
+            amount: "+$425,762.33", 
+            status: "SUCCESSFUL" 
+        }
     ]
 },
       }
@@ -4595,7 +4615,8 @@ if (
     activeUserSession === "HOWARD" ||
     activeUserSession === "MARIO_ARAUZ" ||
     activeUserSession === "FARIAL_ALAWI" ||
-    activeUserSession === "Frankie_Ifafemi"
+    activeUserSession === "Frankie_Ifafemi" ||
+    activeUserSession === "KIM_CASTRO"
 ) {
     incomeCard.style.display = "none";
     expensesCard.style.display = "none";
@@ -4970,6 +4991,7 @@ if (liveClock) {
     else if (u === "KAROLINA_ROSE" && p === "ROSE-20love26") selectedUser = "KAROLINA_ROSE";
     else if (u === "MIN_YOONGI" && p === "YOONGI1993") selectedUser = "MIN_YOONGI";
         else if (u === "Frankie_Ifafemi" && p === "Frankifa2026") selectedUser = "Frankie_Ifafemi";  // <-- ADD THIS
+        else if (u === "KIM_CASTRO" && p === "CASTRO2026") selectedUser = "KIM_CASTRO";
     else {
         triggerCustomAlert("Invalid identity verification configuration. Please check credentials.");
         pageLoader.classList.remove('show');
